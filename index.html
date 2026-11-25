@@ -150,7 +150,7 @@
   <header class="hero wrap" id="top">
     <span class="kicker"><i></i> Actualizado · noviembre 2026</span>
     <h1>Lo que estoy <em>construyendo</em> ahora.</h1>
-    <p class="lead">Un mapa de los desarrollos en curso: frameworks de código abierto, productos sobre Odoo 19 y Odoo 20, integraciones y servicios financieros. Los proyectos públicos enlazan a su repositorio; los privados se describen aquí y se muestran bajo solicitud.</p>
+    <p class="lead">Un mapa de los desarrollos en curso: frameworks de código abierto, herramientas para Odoo, integraciones y apps móviles. Los proyectos públicos enlazan a su repositorio; los privados se describen aquí y se muestran bajo solicitud.</p>
     <div class="cta">
       <a class="btn primary" href="#desarrollos">Ver desarrollos</a>
       <a class="btn" href="https://github.com/mangrovex"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Perfil en GitHub</a>
@@ -158,7 +158,7 @@
     <div class="stats">
       <div class="stat"><b id="s-active">0</b><span>desarrollos activos</span></div>
       <div class="stat"><b id="s-public">0</b><span>proyectos públicos</span></div>
-      <div class="stat"><b id="s-private">0</b><span>líneas privadas</span></div>
+      <div class="stat"><b id="s-private">0</b><span>repositorios privados</span></div>
       <div class="stat"><b>30+</b><span>años desarrollando software</span></div>
     </div>
   </header>
@@ -178,7 +178,7 @@
       <button class="chip" data-f="cat:integ">Integraciones</button>
       <button class="chip" data-f="cat:fin">Fintech</button>
       <button class="chip" data-f="cat:devops">DevOps</button>
-      <button class="chip" data-f="cat:salud">Salud</button>
+      <button class="chip" data-f="cat:mobile">Móvil</button>
       <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar proyecto o tecnología…"></label>
     </div>
     <div class="grid" id="grid"></div>
@@ -189,10 +189,12 @@
     <div class="sec-head">
       <div>
         <h2><small>// histórico</small>Archivo y formación</h2>
-        <p>Repositorios públicos anteriores: cursos, laboratorios y forks de estudio (ISO 20022, OpenAPI, blockchain).</p>
+        <p>Repositorios públicos anteriores (cursos, laboratorios y forks de estudio) y el resto de repositorios privados.</p>
       </div>
     </div>
     <div class="archive" id="archive"></div>
+    <h3 style="font:600 18px 'Space Grotesk';margin:32px 0 14px">Otros repositorios privados</h3>
+    <div class="archive" id="archive-priv"></div>
   </section>
 
   <section class="wrap" id="contacto">
@@ -241,52 +243,26 @@ const PROJECTS = [
     desc:"Laboratorio de pruebas y ejemplos sobre Odoo 17.",
     tags:["Odoo 17","Python"], links:[["Repositorio",GH+"Laboratorio17"]] },
 
-  // ───── Privados ─────
-  { name:"Sabea", code:"eu_* · Odoo 20 Community", icon:"🇪🇨", vis:"private", st:"wip", cat:["odoo"], featured:true,
-    desc:"Suite de localización ecuatoriana sobre Odoo 20 Community, que extiende l10n_ec con módulos propios y de la OCA.",
-    bullets:["Facturación electrónica SRI y reportes en eu_l10n_ec_edi","HRMS + nómina Ecuador migrada de v19 al motor eu_hr_","Suite de seguridad y salud ocupacional (HSE) en el mismo repositorio"],
-    tags:["Odoo 20","Python","SRI","OCA"] },
-  { name:"Teller", code:"ria_* · RiaMoneyTransfer", icon:"💸", vis:"private", st:"prod", cat:["fin","integ"], featured:true,
-    desc:"Solución de envío y pago de remesas RIA sobre Odoo: clientes, identificaciones, órdenes de envío y catálogos.",
-    bullets:["Bróker de remesas RIA en producción","Integria Gateway: proxy FastAPI/uvicorn con TLS frente a Zato","Evolución de TJ_Teller_v1"],
-    tags:["Odoo","FastAPI","Zato","REST"] },
-  { name:"Freight Forwarder", code:"forwarder · Odoo 19 Enterprise", icon:"🚢", vis:"private", st:"wip", cat:["odoo","integ"], featured:true,
-    desc:"Producto para agentes de carga sobre Odoo 19 Enterprise: embarques, documentos y transmisión aduanera.",
-    bullets:["Transmisión a SENAE / ECUAPASS desde un módulo propio en Odoo","Lectura de HBL en PDF con un LLM local (Ollama) o Claude","Corre en un VPS sin GPU con 8 GB de RAM"],
-    tags:["Odoo 19 EE","Ollama","LLM","ECUAPASS"] },
-  { name:"Suite BASC", code:"mgv_basc · _forwarder · _hr", icon:"🛡️", vis:"private", st:"wip", cat:["odoo"],
-    desc:"Sistema de Gestión en Control y Seguridad (Norma BASC V6-2022) para operadores logísticos en Ecuador.",
-    bullets:["Núcleo mgv_basc y extensiones por dominio","Menús BASC – Comercial y BASC – Recursos Humanos"],
-    tags:["Odoo 19 EE","Cumplimiento","BASC"] },
-  { name:"Jinji", code:"Suite de RR. HH. · Odoo", icon:"👥", vis:"private", st:"wip", cat:["odoo"],
-    desc:"Solución solo de recursos humanos sobre Odoo: nómina, talento, clima laboral, HSE, asistencias, ausencias y vacaciones.",
-    tags:["Odoo","Nómina Ecuador","HSE"] },
-  { name:"KPI y planificación estratégica", code:"mgv_kpi_* · mgv_org_development", icon:"🎯", vis:"private", st:"wip", cat:["odoo"],
-    desc:"Catálogo de KPI con proveedores por dominio que alimenta planificación estratégica, OKR, scorecard y evaluación del desempeño.",
-    tags:["Odoo 19 EE","KPI","OKR"] },
-  { name:"Metodología ADKAR en Odoo", code:"CRM · Encuestas · Proyectos", icon:"🧭", vis:"private", st:"wip", cat:["odoo"],
-    desc:"Un método de ventas e implementación basado en ADKAR llevado a Odoo 19.",
-    bullets:["Matriz de evaluación y calificación ADKAR de oportunidades","Propuesta en PDF y encuesta de levantamiento de necesidades","Proyectos de implementación con fases, gates, sprints y reporte semanal"],
-    tags:["Odoo 19","CRM","Survey","Proyectos"] },
-  { name:"POS desconectado", code:"mgv_pos_bridge", icon:"🧾", vis:"private", st:"plan", cat:["integ","odoo"],
-    desc:"Punto de venta propio para 80 cajas con conexión inestable y facturación electrónica SRI.",
-    bullets:["Cliente Flutter para tablet y escritorio","Servidor por almacén con PostgreSQL","Sincronización con Odoo 19 mediante workflows de Temporal"],
-    tags:["Flutter","Temporal","FastAPI","PostgreSQL"] },
-  { name:"Núcleo fintech", code:"mgv_fin_*", icon:"🏦", vis:"private", st:"plan", cat:["fin","odoo"],
-    desc:"Crédito, conciliación bancaria, remesas y banca para pymes sobre un núcleo común, independiente de la versión de Odoo.",
-    tags:["Odoo","Crédito","Conciliación","ISO 20022"] },
-  { name:"Verticales de salud", code:"mgv_optica_* · mgv_pharmacy_stock · hospital", icon:"🩺", vis:"private", st:"plan", cat:["salud","odoo"],
-    desc:"Módulos especificados con SDD para óptica (recetas, laboratorio, sucursales, POS, SRI) en Odoo 20, inventario de farmacia en Odoo 19 e historia clínica (EHR/EMR).",
-    tags:["Odoo 19/20","SDD","EHR"] },
-  { name:"Integración HiringRoom", code:"mgv_hiringroom", icon:"🔗", vis:"private", st:"plan", cat:["integ","odoo"],
-    desc:"Sincronización de reclutamiento desde el ATS HiringRoom hacia Odoo 19 Enterprise, por webhooks con cron de respaldo.",
-    tags:["Odoo 19 EE","Webhooks","ATS"] },
-  { name:"Plataforma de despliegue", code:"odoo-enterprise-deploy · nginx-edge", icon:"🚀", vis:"private", st:"prod", cat:["devops","odoo"],
-    desc:"Infraestructura para desplegar Odoo Enterprise y addons: imágenes, borde Nginx y repositorios de addons.",
-    tags:["Docker","Nginx","Odoo EE"] },
-  { name:"APIs para Odoo", code:"graphql_odoo · odoo_api_17", icon:"🧬", vis:"private", st:"arch", cat:["integ","odoo"],
+  // ───── Privados (repositorios privados de mangrovex) ─────
+  { name:"Despliegue de Odoo Enterprise", code:"odoo-enterprise-deploy · odoo-enterprise-addons · odoo-custom-addons", icon:"🚀", vis:"private", st:"prod", cat:["devops","odoo"], featured:true,
+    desc:"Infraestructura y repositorios de addons para desplegar Odoo Enterprise de forma repetible.",
+    bullets:["Scripts e imágenes de despliegue","Addons Enterprise y personalizados versionados por separado"],
+    tags:["Docker","Odoo EE","Python"] },
+  { name:"nginx-edge", code:"nginx-edge", icon:"🌐", vis:"private", st:"prod", cat:["devops"],
+    desc:"Configuración de borde con Nginx: proxy inverso, TLS y enrutamiento hacia los servicios.",
+    tags:["Nginx","TLS"] },
+  { name:"Entornos Odoo 17 / 19", code:"mangrovex17 · mangrovex19", icon:"🧰", vis:"private", st:"wip", cat:["odoo"],
+    desc:"Espacios de trabajo personales con addons y pruebas sobre Odoo 17 y Odoo 19.",
+    tags:["Odoo 17","Odoo 19","Python"] },
+  { name:"APIs para Odoo", code:"graphql_odoo · graphql_base · odoo_api_17", icon:"🧬", vis:"private", st:"arch", cat:["integ","odoo"],
     desc:"Capas GraphQL y REST sobre Odoo para apps móviles y sistemas externos.",
     tags:["GraphQL","REST","Odoo 17"] },
+  { name:"TJ_Teller_v1", code:"TJ_Teller_v1", icon:"💸", vis:"private", st:"arch", cat:["fin"],
+    desc:"Primera versión de una aplicación de caja (teller) para operaciones de remesas.",
+    tags:["Remesas","Caja"] },
+  { name:"Laboratorio Flutter", code:"flutter_lab · smart_home_animation · badges_app", icon:"📱", vis:"private", st:"arch", cat:["mobile"],
+    desc:"Pruebas de interfaz, animaciones y componentes para apps móviles en Flutter.",
+    tags:["Flutter","Dart"] },
 ];
 
 const ARCHIVE = [
@@ -297,6 +273,8 @@ const ARCHIVE = [
   ["AxelorCourse","curso · Axelor"],["RabbitMQCourse","curso · RabbitMQ"],["eActividades","proyecto"],["RESGASA","proyecto"],
   ["MACROQUIL","proyecto"],["frac2023","proyecto"]
 ];
+
+const PRIVATE_OTHER = ["flowtax","easydocs","pos_cr","rooster","base_clinic","tizenhet","contigo_app","eShop","fred_ux","runakuna","b2bridge","sammy","school","openedunav","OdooHA","Workshop_ACE"];
 
 const ST = {prod:"Producción", wip:"En desarrollo", plan:"Diseño / SDD", arch:"Archivo"};
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -346,6 +324,9 @@ document.getElementById("q").addEventListener("input", render);
 document.getElementById("archive").innerHTML = ARCHIVE.map(([n,t]) =>
   `<a class="arch-item" href="${GH+n}" target="_blank" rel="noopener"><span>${esc(n)}</span><small>${esc(t)}</small></a>`).join("");
 
+document.getElementById("archive-priv").innerHTML = PRIVATE_OTHER.map(n =>
+  `<div class="arch-item"><span>${esc(n)}</span><small>🔒 privado</small></div>`).join("");
+
 function countUp(id, to){
   const el = document.getElementById(id); let i = 0;
   const step = () => { el.textContent = i; if (i++ < to) setTimeout(step, 40); };
@@ -353,7 +334,7 @@ function countUp(id, to){
 }
 countUp("s-active", PROJECTS.filter(p=>p.st!=="arch").length);
 countUp("s-public", PROJECTS.filter(p=>p.vis==="public").length + ARCHIVE.length);
-countUp("s-private", PROJECTS.filter(p=>p.vis==="private").length);
+countUp("s-private", 13 + PRIVATE_OTHER.length);
 render();
 </script>
 </body>
