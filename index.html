@@ -1,368 +1,364 @@
 <!doctype html>
-<html>
-
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>IBO - Icon Builder for Odoo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desarrollos · Manuel Vega (mangrovex)</title>
+  <meta name="description" content="Proyectos públicos y privados en los que trabaja Manuel Vega (Manexware S.A.): Odoo 19/20, localización ecuatoriana, integraciones, fintech y herramientas DevOps.">
+  <meta name="author" content="Manuel Vega · Manexware S.A.">
+  <meta property="og:title" content="Desarrollos · Manuel Vega">
+  <meta property="og:description" content="Odoo · Integraciones · Fintech · DevOps — proyectos públicos y privados.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B1F3A'/><text x='50%' y='56%' font-family='Arial' font-weight='700' font-size='34' fill='%23C9A227' text-anchor='middle' dominant-baseline='middle'>M</text></svg>">
+  <style>
+    :root{
+      --bg:#07131F; --bg2:#0B1F3A; --panel:#0F2742; --panel2:#132F50;
+      --line:rgba(201,162,39,.18); --line2:rgba(230,237,245,.08);
+      --text:#E6EDF5; --muted:#8FA3B8; --gold:#C9A227; --gold2:#E7C65A;
+      --odoo:#A46D96; --ok:#3FB68B; --wip:#E7C65A; --plan:#6EA8FE; --arch:#6B7C8F;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-    <meta name="author" content="spilymp">
-    <meta name="description" content="An simple Icon Builder for Odoo (IBO), which provide the ability to create app icons in the style of the appicons of the ERP system Odoo.">
+    /* background */
+    .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+    .bg::before{content:"";position:absolute;inset:0;
+      background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);
+      background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 0%,#000 25%,transparent 70%)}
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45}
+    .orb.a{width:520px;height:520px;background:#15365F;top:-160px;left:-120px}
+    .orb.b{width:420px;height:420px;background:#C9A22755;top:-80px;right:-120px}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    /* nav */
+    nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(7,19,31,.7);border-bottom:1px solid var(--line2)}
+    nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk";font-weight:700;text-decoration:none}
+    .brand img{width:32px;height:32px;border-radius:10px;border:1px solid var(--line)}
+    .brand span{color:var(--gold)}
+    nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+    nav ul a{text-decoration:none}
+    nav ul a:hover{color:var(--text)}
 
-    <link rel="stylesheet" type="text/css" href="css/milligram.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    /* hero */
+    header.hero{padding:88px 0 40px}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font:500 13px "JetBrains Mono";color:var(--gold);background:rgba(201,162,39,.08);border:1px solid var(--line);padding:6px 12px;border-radius:99px}
+    .kicker i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(63,182,139,.2);animation:pulse 2s infinite}
+    @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(63,182,139,0)}}
+    h1{font-family:"Space Grotesk";font-size:clamp(38px,6vw,68px);line-height:1.04;letter-spacing:-.02em;margin:22px 0 18px;max-width:900px}
+    h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--line2);background:var(--panel);transition:.2s}
+    .btn:hover{border-color:var(--gold);transform:translateY(-1px)}
+    .btn.primary{background:var(--gold);color:#0B1F3A;border-color:var(--gold)}
+    .btn svg{width:16px;height:16px}
 
-    <!-- Font Awesome -->
-    <!--<link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-	-->
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+    .stat{background:linear-gradient(180deg,var(--panel),transparent);border:1px solid var(--line2);border-radius:var(--radius);padding:20px}
+    .stat b{display:block;font:700 34px "Space Grotesk";color:var(--text)}
+    .stat span{font-size:13px;color:var(--muted)}
 
-    <!-- Simple Line Icons -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
-        integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw=="
-        crossorigin="anonymous" />
+    /* sections */
+    section{padding:56px 0}
+    .sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+    h2{font-family:"Space Grotesk";font-size:32px;margin:0;letter-spacing:-.01em}
+    h2 small{display:block;font:500 13px "JetBrains Mono";color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+    .sec-head p{margin:6px 0 0;color:var(--muted);max-width:620px}
 
-    <!-- Bootstrap Icons-->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-        as="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    /* toolbar */
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+    .chip{cursor:pointer;border:1px solid var(--line2);background:var(--panel);color:var(--muted);padding:8px 14px;border-radius:99px;font:500 13px Inter;transition:.15s}
+    .chip:hover{color:var(--text)}
+    .chip.on{background:var(--gold);color:#0B1F3A;border-color:var(--gold)}
+    .chip .n{opacity:.7;margin-left:4px;font-family:"JetBrains Mono";font-size:12px}
+    .search{margin-left:auto;position:relative}
+    .search input{background:var(--panel);border:1px solid var(--line2);border-radius:12px;color:var(--text);padding:10px 14px 10px 36px;font:14px Inter;width:240px;outline:none}
+    .search input:focus{border-color:var(--gold)}
+    .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;color:var(--muted)}
 
-    <!-- Remix Icons-->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    /* cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+    .card{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line2);border-radius:var(--radius);padding:22px;transition:.2s;overflow:hidden}
+    .card:hover{border-color:var(--line);transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
+    .card.featured::after{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+    .card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+    .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:rgba(201,162,39,.1);border:1px solid var(--line)}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .badge{font:500 11px "JetBrains Mono";padding:4px 8px;border-radius:7px;border:1px solid var(--line2);color:var(--muted);white-space:nowrap}
+    .badge.pub{color:#7EE2B8;border-color:rgba(63,182,139,.35)}
+    .badge.priv{color:#F2B880;border-color:rgba(242,184,128,.35)}
+    .st{display:inline-flex;align-items:center;gap:6px}
+    .st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+    .st.prod{color:var(--ok)} .st.wip{color:var(--wip)} .st.plan{color:var(--plan)} .st.arch{color:var(--arch)}
+    .card h3{font:600 20px "Space Grotesk";margin:0 0 4px}
+    .card .code{font:12px "JetBrains Mono";color:var(--gold);margin-bottom:10px;word-break:break-word}
+    .card p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+    .card ul{margin:0 0 14px;padding-left:18px;color:var(--muted);font-size:13.5px}
+    .card ul li{margin:3px 0}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin:auto 0 16px}
+    .tag{font-size:12px;padding:3px 9px;border-radius:99px;background:rgba(230,237,245,.06);color:#C4D1DE}
+    .links{display:flex;gap:14px;flex-wrap:wrap;font-size:13.5px;font-weight:600;border-top:1px solid var(--line2);padding-top:14px}
+    .links a{text-decoration:none;color:var(--gold)}
+    .links a:hover{text-decoration:underline}
+    .links .locked{color:var(--muted);font-weight:500}
+    .empty{display:none;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line2);border-radius:var(--radius)}
 
-    <!-- Tabler Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@1.41.2/iconfont/tabler-icons.min.css">
+    /* archive list */
+    .archive{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+    .arch-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid var(--line2);border-radius:12px;background:rgba(15,39,66,.5);font-size:14px;text-decoration:none;transition:.15s}
+    .arch-item:hover{border-color:var(--line)}
+    .arch-item small{color:var(--muted);font:11px "JetBrains Mono"}
 
-	<script src="https://kit.fontawesome.com/e33487a8f0.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/ibo_icon.js"></script>
+    /* contact */
+    .contact{background:linear-gradient(120deg,var(--bg2),var(--panel2));border:1px solid var(--line);border-radius:24px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+    .contact h2{font-size:28px}
+    .contact p{color:var(--muted);margin:8px 0 0;max-width:560px}
+    footer{padding:36px 0 60px;color:var(--muted);font-size:13px;text-align:center}
 
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-            let icon = new IBO_ICON({
-                'font_family': 'bootstrap-icons',
-                'icon_class': 'bi bi-droplet',
-            });
-            icon.draw("icon");
-        });
-
-        function generate() {
-            document.getElementById("icon").innerHTML = '';
-            let icon = new IBO_ICON({
-                'font_color': document.getElementById('iconFontColor').value,
-                'font_family': document.getElementById('iconSet').value,
-                'icon_background': document.getElementById('iconBackgroundColor').value,
-                'icon_class': document.getElementById('iconClass').value,
-                'odoo_version': document.getElementById('odooVersion').value,
-            });
-            icon.draw("icon");
-        }
-
-        function download() {
-            var image = document.getElementsByClassName('ibo-icon-canvas')[0].toDataURL("image/png").replace("image/png", "image/octet-stream");
-            document.getElementById("download").setAttribute("href", image);
-        }
-
-        function populateIconSetWebsite() {
-            switch (document.getElementById('iconSet').value) {
-                case "Font Awesome 6 Brands":
-                    document.getElementById('iconSetWebsite').href = "https://fontawesome.com/search?m=free&s=brands"
-                    break;
-                case "bootstrap-icons":
-                    document.getElementById('iconSetWebsite').href = "https://icons.getbootstrap.com/"
-                    break;
-                case "simple-line-icons":
-                    document.getElementById('iconSetWebsite').href = "https://simplelineicons.github.io/"
-                    break;
-                case "remixicon":
-                    document.getElementById('iconSetWebsite').href = "https://remixicon.com/"
-                    break;
-                case "tabler-icons":
-                    document.getElementById('iconSetWebsite').href = "https://tabler-icons.io/"
-                    break;
-                default:
-                    document.getElementById('iconSetWebsite').href = "https://fontawesome.com/search?m=free&s=solid"
-                    break;
-            }
-        }
-
-    </script>
-
+    @media (max-width:760px){
+      nav ul{display:none}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .search{margin-left:0;width:100%}
+      .search input{width:100%}
+      header.hero{padding-top:56px}
+    }
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
 </head>
-
 <body>
+  <div class="bg"><div class="orb a"></div><div class="orb b"></div></div>
 
-    <!-- pre loading the fonts so they are available for the js class -->
-    <div class="font_preload" style="opacity: 0">
-        <span style="font-family: 'Font Awesome 6 Free', Arial, sans-serif;"></span>
-        <span style="font-family: 'Font Awesome 6 Brands', Arial, sans-serif;"></span>
-        <span style="font-family: 'bootstrap-icons', Arial, sans-serif;"></span>
-        <span style="font-family: 'simple-line-icons', Arial, sans-serif;"></span>
-        <span style="font-family: 'remixicon', Arial, sans-serif;"></span>
-        <span style="font-family: 'tabler-icons', Arial, sans-serif;"></span>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="https://github.com/mangrovex.png?size=64" alt="">mangrovex<span>.</span></a>
+      <ul>
+        <li><a href="#desarrollos">Desarrollos</a></li>
+        <li><a href="#archivo">Archivo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="https://github.com/mangrovex">GitHub ↗</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <header class="container">
-        <div class="row">
-            <div class="column align-center">
-                <h1>IBO - Icon Builder for Odoo</h1>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="row row-center">
-            <div class="column align-center">
-                <div class="row">
-                    <div class="column column-center">
-                        <label for="odooVersion">Odoo Version</label>
-                    </div>
-                    <div class="column">
-                        <select id="odooVersion">
-                            <option value="14.0">Odoo 14</option>
-                            <option value="13.0">Odoo 13</option>
-                            <option value="12.0">Odoo 12</option>
-                            <option value="11.0">Odoo 11</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row icon-set-website">
-                    <div class="column column-center column-50">
-                        <label for="iconSet">Icon Set</label>
-                    </div>
-
-                    <div class="column column-40">
-                        <select id="iconSet" onchange="populateIconSetWebsite()">
-                            <option value="Font Awesome 6 Free">Font Awesome 6 Solid</option>
-                            <option value="Font Awesome 6 Brands">Font Awesome 6 Brands</option>
-                            <option value="bootstrap-icons">Bootstrap Icons</option>
-                            <option value="simple-line-icons">Simple Line Icons</option>
-                            <option value="remixicon">Remix Icon</option>
-                            <option value="tabler-icons">Tabler Icons</option>
-                        </select>
-                    </div>
-
-                    <div class="column">
-                        <a href="https://fontawesome.com/search?m=free&s=solid" id="iconSetWebsite" class="button button-outline" target="_blank">
-                            <i class="fas fa-globe-europe"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="column column-center">
-                        <label for="iconClass">Icon Class</label><i id="icon-preview"></i>
-                    </div>
-                    <div class="column">
-                        <input id="iconClass" type="text" placeholder="eg. fas fa-address-card">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="column column-center">
-                        <label for="iconFontColor">Icon Font Color</label>
-                    </div>
-                    <div class="column">
-                        <input id="iconFontColor" type="color" onchange="clickColor(0, -1, -1, 5)" value="#ffffff">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="column column-center">
-                        <label for="iconBackgroundColor">Icon Background Color</label>
-                    </div>
-                    <div class="column">
-                        <input type="color" onchange="clickColor(0, -1, -1, 5)" value="#9b4dca"
-                            id="iconBackgroundColor">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="column">
-
-                    </div>
-                    <div class="column align-center">
-                        <a id="download" download="odoo_icon.png">
-                            <button class="button" type="submit" value="Download" onclick="download()">Download</button>
-                        </a>
-                        <input class="button button-outline" type="submit" value="Generate" onclick="generate()">
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="column align-center">
-                <div id="icon"></div>
-            </div>
-
-        </div>
+  <header class="hero wrap" id="top">
+    <span class="kicker"><i></i> Actualizado · noviembre 2026</span>
+    <h1>Lo que estamos <em>construyendo</em> en Manexware.</h1>
+    <p class="lead">Un mapa de los desarrollos en curso: frameworks de código abierto, productos sobre Odoo 19 y Odoo 20, integraciones y servicios financieros. Los proyectos públicos enlazan a su repositorio; los privados se describen aquí y se muestran bajo solicitud.</p>
+    <div class="cta">
+      <a class="btn primary" href="#desarrollos">Ver desarrollos</a>
+      <a class="btn" href="https://github.com/mangrovex"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Perfil en GitHub</a>
+      <a class="btn" href="https://manexware.com">Manexware S.A. ↗</a>
     </div>
+    <div class="stats">
+      <div class="stat"><b id="s-active">0</b><span>desarrollos activos</span></div>
+      <div class="stat"><b id="s-public">0</b><span>proyectos públicos</span></div>
+      <div class="stat"><b id="s-private">0</b><span>líneas privadas</span></div>
+      <div class="stat"><b>30+</b><span>años desarrollando software</span></div>
+    </div>
+  </header>
 
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <h2>Documentation</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <p class="section-description">
-                    The configurator above can be used to quickly and easily create new appicons in the style of the
-                    appicons of the ERP system <a href="https://www.odoo.com/" rel="external nofollow">Odoo</a>.
+  <section class="wrap" id="desarrollos">
+    <div class="sec-head">
+      <div>
+        <h2><small>// portafolio</small>Desarrollos</h2>
+        <p>Filtra por visibilidad o por área. Los estados indican en qué punto está cada proyecto.</p>
+      </div>
+    </div>
+    <div class="toolbar" id="toolbar">
+      <button class="chip on" data-f="all">Todos</button>
+      <button class="chip" data-f="public">Públicos</button>
+      <button class="chip" data-f="private">Privados</button>
+      <button class="chip" data-f="cat:odoo">Odoo</button>
+      <button class="chip" data-f="cat:integ">Integraciones</button>
+      <button class="chip" data-f="cat:fin">Fintech</button>
+      <button class="chip" data-f="cat:devops">DevOps</button>
+      <button class="chip" data-f="cat:salud">Salud</button>
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar proyecto o tecnología…"></label>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty">No hay proyectos que coincidan con el filtro.</div>
+  </section>
 
-                    To set an icon you have to find and enter the corresponding css class.
-                    Please check the corresponding page of the icon set for this purpose:
-                <ul>
-                    <li><a href="https://fontawesome.com/search?m=free&s=solid">Font Awesome 6 Solid</a></li>
-                    <li><a href="https://fontawesome.com/search?m=free&s=brands">Font Awesome 6 Brands</a></li>
-                    <li><a href="https://icons.getbootstrap.com/">Bootstrap Icons</a></li>
-                    <li><a href="https://simplelineicons.github.io/">Simple Line Icons</a></li>
-                    <li><a href="https://remixicon.com/">Remix Icon</a></li>
-                    <li><a href="https://tabler-icons.io/">Tabler Icons</a></li>
-                </ul>
-                </p>
-            </div>
-        </div>
+  <section class="wrap" id="archivo">
+    <div class="sec-head">
+      <div>
+        <h2><small>// histórico</small>Archivo y formación</h2>
+        <p>Repositorios públicos anteriores: cursos, laboratorios y forks de estudio (ISO 20022, OpenAPI, blockchain).</p>
+      </div>
+    </div>
+    <div class="archive" id="archive"></div>
+  </section>
 
-        <div class="row">
-            <div class="column">
-                <h3>Getting Started</h3>
-            </div>
-        </div>
-        <div class="row row-center">
-            <div class="column">
-                <p>
-                    It is also possible to use the class elsewhere and create your own configurator based on it, for
-                    example.
-                    For this purpose, the class offers a few more parameters for individualization in addition to the
-                    options shown above.
-                </p>
-            </div>
-        </div>
-        <div class="row row-center">
-            <div class="column">
-                <p>
-                    The basis of the configurator is a JavaScript class "IBO_ICON", which creates a canvas and "paints"
-                    the icon on it.
-                    If the existing class is used directly by means of a script, additional parameters can be passed.
-                    If this class is instantiated, various parameters can be passed to it (see sample code block on the
-                    right).
-                    If not, default values are used in each case.
-                </p>
-            </div>
-            <div class="column">
-                <pre>
-                        <code>[...]
-let icon = new IBO_ICON({
-    'font_family': 'bootstrap-icons',
-    'icon_class': 'bi bi-droplet',
+  <section class="wrap" id="contacto">
+    <div class="contact">
+      <div>
+        <h2>¿Te interesa alguno de los proyectos privados?</h2>
+        <p>Puedo mostrarte una demo, la arquitectura o el SDD del módulo. Escríbeme y coordinamos.</p>
+      </div>
+      <div class="cta" style="margin:0">
+        <a class="btn primary" href="mailto:manuel.vega@manexware.com?subject=Consulta%20sobre%20desarrollos">manuel.vega@manexware.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/manuel-vega-9442898/">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Manuel Vega · Manexware S.A. — Odoo Silver Partner · Guayaquil, Ecuador<br>
+    <span style="opacity:.7">¿Buscabas el generador de íconos para Odoo? Está en <a href="ibo/">/ibo</a>.</span>
+  </footer>
+
+<script>
+const GH = "https://github.com/mangrovex/";
+// estado: prod | wip | plan | arch
+const PROJECTS = [
+  // ───── Públicos ─────
+  { name:"Musubi", code:"mangrovex/musubi", icon:"🧶", vis:"public", st:"wip", cat:["integ","devops"], featured:true,
+    desc:"Framework de integración sobre Zato 4.1. Sistemas, APIs e IA conectados en un solo punto, de forma explícita y reproducible.",
+    bullets:["CLI sin dependencias: init, profiles, validate, doctor","Perfiles dev / stage / prod con políticas progresivas","Docker Compose con Zato 4.1 + Caddy, CI en Python 3.11/3.12"],
+    tags:["Python","Zato 4.1","Docker","Caddy","GitHub Actions"],
+    links:[["Repositorio",GH+"musubi"],["Sitio","https://mangrovex.github.io/musubi/"]] },
+  { name:"Chaskidoo", code:"mangrovex/chaskidoo · fork de rocketdoo", icon:"🏃", vis:"public", st:"wip", cat:["odoo","devops"], featured:true,
+    desc:"Entornos de desarrollo y despliegue de Odoo con Docker, adaptados a la forma de trabajo de Manexware.",
+    bullets:["rkd init pregunta: PostgreSQL en Docker o en el VPS","Proxy Nginx o Traefik a elección","Funciona en Linux y macOS"],
+    tags:["Odoo","Docker","Nginx","Traefik","Python"],
+    links:[["Repositorio",GH+"chaskidoo"],["Documentación","https://mangrovex.github.io/chaskidoo/"]] },
+  { name:"flutter_paymentez_sdk", code:"mangrovex/flutter_paymentez_sdk", icon:"💳", vis:"public", st:"prod", cat:["fin"],
+    desc:"SDK en Flutter para integrar pagos con tarjeta mediante Paymentez en apps móviles.",
+    tags:["Flutter","Dart","Pagos"], links:[["Repositorio",GH+"flutter_paymentez_sdk"]] },
+  { name:"manex_odoo_repository", code:"mangrovex/manex_odoo_repository", icon:"🧩", vis:"public", st:"prod", cat:["odoo"],
+    desc:"Módulos Odoo de Manexware publicados para la comunidad.",
+    tags:["Odoo","Python","XML"], links:[["Repositorio",GH+"manex_odoo_repository"]] },
+  { name:"fastApiOdoo", code:"mangrovex/fastApiOdoo", icon:"⚡", vis:"public", st:"arch", cat:["odoo","integ"],
+    desc:"Experimento de API externa en FastAPI conectada a Odoo.",
+    tags:["FastAPI","Odoo","Python"], links:[["Repositorio",GH+"fastApiOdoo"]] },
+  { name:"banner_carousel_odoo", code:"mangrovex/banner_carousel_odoo", icon:"🖼️", vis:"public", st:"prod", cat:["odoo"],
+    desc:"Carrusel de banners para el sitio web de Odoo.",
+    tags:["Odoo Website","JavaScript"], links:[["Repositorio",GH+"banner_carousel_odoo"]] },
+  { name:"Laboratorio17", code:"mangrovex/Laboratorio17", icon:"🧪", vis:"public", st:"arch", cat:["odoo"],
+    desc:"Laboratorio de pruebas y ejemplos sobre Odoo 17.",
+    tags:["Odoo 17","Python"], links:[["Repositorio",GH+"Laboratorio17"]] },
+
+  // ───── Privados ─────
+  { name:"Sabea", code:"eu_* · Odoo 20 Community", icon:"🇪🇨", vis:"private", st:"wip", cat:["odoo"], featured:true,
+    desc:"Suite de localización ecuatoriana sobre Odoo 20 Community, que extiende l10n_ec con módulos propios y de la OCA.",
+    bullets:["Facturación electrónica SRI y reportes en eu_l10n_ec_edi","HRMS + nómina Ecuador migrada de v19 al motor eu_hr_","Suite de seguridad y salud ocupacional (HSE) en el mismo repositorio"],
+    tags:["Odoo 20","Python","SRI","OCA"] },
+  { name:"Teller", code:"ria_* · RiaMoneyTransfer", icon:"💸", vis:"private", st:"prod", cat:["fin","integ"], featured:true,
+    desc:"Solución de envío y pago de remesas RIA sobre Odoo: clientes, identificaciones, órdenes de envío y catálogos.",
+    bullets:["Bróker de remesas RIA en producción","Integria Gateway: proxy FastAPI/uvicorn con TLS frente a Zato","Evolución de TJ_Teller_v1"],
+    tags:["Odoo","FastAPI","Zato","REST"] },
+  { name:"Manexware Freight Forwarder", code:"manex_forwarder", icon:"🚢", vis:"private", st:"wip", cat:["odoo","integ"], featured:true,
+    desc:"Producto para agentes de carga sobre Odoo 19 Enterprise: embarques, documentos y transmisión aduanera.",
+    bullets:["Transmisión a SENAE / ECUAPASS desde un módulo propio en Odoo","manex_forwarder_plumber: lectura de HBL en PDF con un LLM local (Ollama) o Claude","Corre en un VPS sin GPU con 8 GB de RAM"],
+    tags:["Odoo 19 EE","Ollama","LLM","ECUAPASS"] },
+  { name:"Suite BASC", code:"mgv_basc · _forwarder · _hr", icon:"🛡️", vis:"private", st:"wip", cat:["odoo"],
+    desc:"Sistema de Gestión en Control y Seguridad (Norma BASC V6-2022) para operadores logísticos en Ecuador.",
+    bullets:["Núcleo mgv_basc y extensiones por dominio","Menús BASC – Comercial y BASC – Recursos Humanos"],
+    tags:["Odoo 19 EE","Cumplimiento","BASC"] },
+  { name:"Jinji", code:"jinji.manexware.com", icon:"👥", vis:"private", st:"wip", cat:["odoo"],
+    desc:"Solución solo de recursos humanos sobre Odoo: nómina, talento, clima laboral, HSE, asistencias, ausencias y vacaciones.",
+    tags:["Odoo","Nómina Ecuador","HSE"] },
+  { name:"KPI y planificación estratégica", code:"mgv_kpi_* · mgv_org_development", icon:"🎯", vis:"private", st:"wip", cat:["odoo"],
+    desc:"Catálogo de KPI con proveedores por dominio que alimenta planificación estratégica, OKR, scorecard y evaluación del desempeño.",
+    tags:["Odoo 19 EE","KPI","OKR"] },
+  { name:"Metodología ADKAR en Odoo", code:"manex_crm_adkar · _survey · manex_project_impl", icon:"🧭", vis:"private", st:"wip", cat:["odoo"],
+    desc:"El método de ventas e implementación de Manexware llevado a Odoo 19.",
+    bullets:["Matriz de evaluación y calificación ADKAR de oportunidades","Propuesta en PDF y encuesta de levantamiento de necesidades","Proyectos de implementación con fases, gates, sprints y reporte semanal"],
+    tags:["Odoo 19","CRM","Survey","Proyectos"] },
+  { name:"POS desconectado", code:"mgv_pos_bridge", icon:"🧾", vis:"private", st:"plan", cat:["integ","odoo"],
+    desc:"Punto de venta propio para 80 cajas con conexión inestable y facturación electrónica SRI.",
+    bullets:["Cliente Flutter para tablet y escritorio","Servidor por almacén con PostgreSQL","Sincronización con Odoo 19 mediante workflows de Temporal"],
+    tags:["Flutter","Temporal","FastAPI","PostgreSQL"] },
+  { name:"Núcleo fintech", code:"mgv_fin_*", icon:"🏦", vis:"private", st:"plan", cat:["fin","odoo"],
+    desc:"Crédito, conciliación bancaria, remesas y banca para pymes sobre un núcleo común, independiente de la versión de Odoo.",
+    tags:["Odoo","Crédito","Conciliación","ISO 20022"] },
+  { name:"Verticales de salud", code:"mgv_optica_* · mgv_pharmacy_stock · hospital", icon:"🩺", vis:"private", st:"plan", cat:["salud","odoo"],
+    desc:"Módulos especificados con SDD para óptica (recetas, laboratorio, sucursales, POS, SRI) en Odoo 20, inventario de farmacia en Odoo 19 e historia clínica (EHR/EMR).",
+    tags:["Odoo 19/20","SDD","EHR"] },
+  { name:"Integración HiringRoom", code:"mgv_hiringroom", icon:"🔗", vis:"private", st:"plan", cat:["integ","odoo"],
+    desc:"Sincronización de reclutamiento desde el ATS HiringRoom hacia Odoo 19 Enterprise, por webhooks con cron de respaldo.",
+    tags:["Odoo 19 EE","Webhooks","ATS"] },
+  { name:"Plataforma de despliegue", code:"odoo-enterprise-deploy · nginx-edge", icon:"🚀", vis:"private", st:"prod", cat:["devops","odoo"],
+    desc:"Infraestructura con la que Manexware despliega Odoo Enterprise y addons a clientes: imágenes, borde Nginx y repositorios de addons.",
+    tags:["Docker","Nginx","Odoo EE"] },
+  { name:"APIs para Odoo", code:"graphql_odoo · odoo_api_17", icon:"🧬", vis:"private", st:"arch", cat:["integ","odoo"],
+    desc:"Capas GraphQL y REST sobre Odoo para apps móviles y sistemas externos.",
+    tags:["GraphQL","REST","Odoo 17"] },
+];
+
+const ARCHIVE = [
+  ["prowide-iso20022","fork · ISO 20022"],["prowide-core","fork · SWIFT MT"],["pain001","fork · pagos ISO 20022"],
+  ["postman-to-openapi","fork · OpenAPI"],["ZeroToBlockchain","fork · blockchain"],["ibm-performance-monitor","fork · monitoreo"],
+  ["HADWIN","fork"],["panache","fork · Flutter themes"],["mycompany","fork"],["PODUNK","fork"],
+  ["Curso_API_rest","curso · API REST"],["CursoPython","curso · Python"],["CursoDA","curso"],["CursoBP","curso"],
+  ["AxelorCourse","curso · Axelor"],["RabbitMQCourse","curso · RabbitMQ"],["eActividades","proyecto"],["RESGASA","proyecto"],
+  ["MACROQUIL","proyecto"],["frac2023","proyecto"]
+];
+
+const ST = {prod:"Producción", wip:"En desarrollo", plan:"Diseño / SDD", arch:"Archivo"};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function card(p){
+  const vis = p.vis === "public" ? '<span class="badge pub">Público</span>' : '<span class="badge priv">🔒 Privado</span>';
+  const bullets = p.bullets ? `<ul>${p.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>` : "";
+  const links = p.links ? p.links.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("")
+                        : '<span class="locked">Repositorio privado · demo bajo solicitud</span>';
+  return `<article class="card${p.featured?" featured":""}">
+    <div class="card-top"><div class="ico">${p.icon}</div>
+      <div class="badges">${vis}<span class="badge st ${p.st}">${ST[p.st]}</span></div></div>
+    <h3>${esc(p.name)}</h3><div class="code">${esc(p.code)}</div>
+    <p>${esc(p.desc)}</p>${bullets}
+    <div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+    <div class="links">${links}</div></article>`;
+}
+
+const order = {wip:0, prod:1, plan:2, arch:3};
+const sorted = [...PROJECTS].sort((a,b)=> (b.featured|0)-(a.featured|0) || order[a.st]-order[b.st]);
+let filter = "all";
+
+function render(){
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  const list = sorted.filter(p=>{
+    if (filter==="public" && p.vis!=="public") return false;
+    if (filter==="private" && p.vis!=="private") return false;
+    if (filter.startsWith("cat:") && !p.cat.includes(filter.slice(4))) return false;
+    if (q && !(p.name+" "+p.code+" "+p.desc+" "+p.tags.join(" ")).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  document.getElementById("grid").innerHTML = list.map(card).join("");
+  document.getElementById("empty").style.display = list.length ? "none" : "block";
+}
+
+document.querySelectorAll(".chip").forEach(c=>{
+  const f = c.dataset.f;
+  const n = PROJECTS.filter(p => f==="all" || (f==="public"&&p.vis==="public") || (f==="private"&&p.vis==="private") || (f.startsWith("cat:")&&p.cat.includes(f.slice(4)))).length;
+  c.insertAdjacentHTML("beforeend", `<span class="n">${n}</span>`);
+  c.addEventListener("click", ()=>{
+    document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+    c.classList.add("on"); filter = f; render();
+  });
 });
-[...]</code>
-                </pre>
-            </div>
-        </div>
+document.getElementById("q").addEventListener("input", render);
 
-        <div class="row row-center">
-            <div class="column">
-                <p>
-                    The actual creation then takes place in the "draw" method.
-                    The ID of an HTML element to which the created canvas is attached must be specified here as a
-                    parameter.
-                </p>
-            </div>
-            <div class="column">
-                <pre>
-                        <code>[...]
-icon.draw("icon");
-[...]</code>
-                </pre>
-            </div>
-        </div>
+document.getElementById("archive").innerHTML = ARCHIVE.map(([n,t]) =>
+  `<a class="arch-item" href="${GH+n}" target="_blank" rel="noopener"><span>${esc(n)}</span><small>${esc(t)}</small></a>`).join("");
 
-        <div class="row">
-            <h3>Parameter</h3>
-        </div>
-
-        <div class="row">
-            <div class="column">
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Values</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>font_color</td>
-                            <td>eg. "#ffffff"</td>
-                            <td>Hex color value for the text or symbol.</td>
-                        </tr>
-                        <tr>
-                            <td>font_family</td>
-                            <td>eg. "Font Awesome 5 Free"</td>
-                            <td>Font family for your text or symbol. Make sure the family is added to your page!</td>
-                        </tr>
-                        <tr>
-                            <td>font_weight</td>
-                            <td>eg. "900"</td>
-                            <td>Font weight for your text or symbol.</td>
-                        </tr>
-                        <tr>
-                            <td>icon_background</td>
-                            <td>eg. "#9b4dca"</td>
-                            <td>Hex color value for the background of your icon.</td>
-                        </tr>
-                        <tr>
-                            <td>icon_class</td>
-                            <td>eg. "fas fa-address-card"</td>
-                            <td>CSS class name of your symbol for the icon, the class will automatically try to finde
-                                the corresponding unicode. If an unicode (parameter "icon_text") is set the class will be ignored.</td>
-                        </tr>
-                        <tr>
-                            <td>icon_text</td>
-                            <td>eg. "Test"</td>
-                            <td>The text or symbol which should be displayed on the icon. Will be preferred over the
-                                parameter "icon_class" if set.</td>
-                        </tr>
-                        <tr>
-                            <td>icon_width</td>
-                            <td>eg. "300"</td>
-                            <td>The width of your icon (in px), will also be the height of your icon.</td>
-                        </tr>
-                        <tr>
-                            <td>odoo_version</td>
-                            <td>["11.0", "12.0", "13.0", "14.0"]</td>
-                            <td>The odoo version for which the icon should be generated.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <footer class="container">
-        <div class="row">
-            <hr />
-        </div>
-        <div class="row">
-            <div class="column column-50">
-                <p>
-                    Created with <i class="fas fa-heart"></i> by <a href="https://github.com/spilymp">spilymp</a>.
-                </p>
-            </div>
-            <div class="column column-50 align-right">
-                <p>
-                    View Source Code on <a href="https://github.com/spilymp/ibo"><i class="fab fa-github"></i></a>
-                </p>
-            </div>
-        </div>
-    </footer>
+function countUp(id, to){
+  const el = document.getElementById(id); let i = 0;
+  const step = () => { el.textContent = i; if (i++ < to) setTimeout(step, 40); };
+  step();
+}
+countUp("s-active", PROJECTS.filter(p=>p.st!=="arch").length);
+countUp("s-public", PROJECTS.filter(p=>p.vis==="public").length + ARCHIVE.length);
+countUp("s-private", PROJECTS.filter(p=>p.vis==="private").length);
+render();
+</script>
 </body>
-
 </html>
