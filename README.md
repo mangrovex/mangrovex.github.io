@@ -1,6 +1,6 @@
 # mangrovex.github.io
 
-Sitio personal de **Manuel Vega** (Manexware S.A.) con el mapa de desarrollos públicos y privados en curso.
+Sitio personal de **Manuel Vega** con el mapa de desarrollos públicos y privados en curso.
 
 - **Desarrollos:** https://mangrovex.github.io
 - **IBO – Icon Builder for Odoo:** https://mangrovex.github.io/ibo/ (basado en el trabajo de [spilymp](https://github.com/spilymp/iob))
