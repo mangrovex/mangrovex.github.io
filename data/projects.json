@@ -1,0 +1,449 @@
+{
+  "generated_at": "2026-11-25T23:56:17+00:00",
+  "source": "yml",
+  "projects": [
+    {
+      "name": "Musubi",
+      "code": "mangrovex/musubi",
+      "icon": "🧶",
+      "vis": "public",
+      "st": "wip",
+      "cat": [
+        "integ",
+        "devops"
+      ],
+      "featured": true,
+      "desc": "Framework de integración sobre Zato 4.1. Sistemas, APIs e IA conectados en un solo punto, de forma explícita y reproducible.",
+      "bullets": [
+        "CLI sin dependencias: init, profiles, validate, doctor",
+        "Perfiles dev / stage / prod con políticas progresivas",
+        "Docker Compose con Zato 4.1 + Caddy, CI en Python 3.11/3.12"
+      ],
+      "tags": [
+        "Python",
+        "Zato 4.1",
+        "Docker",
+        "Caddy",
+        "GitHub Actions"
+      ],
+      "links": [
+        {
+          "label": "Repositorio",
+          "url": "https://github.com/mangrovex/musubi"
+        },
+        {
+          "label": "Sitio",
+          "url": "https://mangrovex.github.io/musubi/"
+        }
+      ],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "Chaskidoo",
+      "code": "mangrovex/chaskidoo · fork de rocketdoo",
+      "icon": "🏃",
+      "vis": "public",
+      "st": "wip",
+      "cat": [
+        "odoo",
+        "devops"
+      ],
+      "featured": true,
+      "desc": "Entornos de desarrollo y despliegue de Odoo con Docker, con opciones flexibles de base de datos y proxy.",
+      "bullets": [
+        "rkd init pregunta: PostgreSQL en Docker o en el VPS",
+        "Proxy Nginx o Traefik a elección",
+        "Funciona en Linux y macOS"
+      ],
+      "tags": [
+        "Odoo",
+        "Docker",
+        "Nginx",
+        "Traefik",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "Repositorio",
+          "url": "https://github.com/mangrovex/chaskidoo"
+        },
+        {
+          "label": "Documentación",
+          "url": "https://mangrovex.github.io/chaskidoo/"
+        }
+      ],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "flutter_paymentez_sdk",
+      "code": "mangrovex/flutter_paymentez_sdk",
+      "icon": "💳",
+      "vis": "public",
+      "st": "prod",
+      "cat": [
+        "fin",
+        "mobile"
+      ],
+      "featured": false,
+      "desc": "SDK en Flutter para integrar pagos con tarjeta mediante Paymentez en apps móviles.",
+      "bullets": [],
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Pagos"
+      ],
+      "links": [
+        {
+          "label": "Repositorio",
+          "url": "https://github.com/mangrovex/flutter_paymentez_sdk"
+        }
+      ],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "fastApiOdoo",
+      "code": "mangrovex/fastApiOdoo",
+      "icon": "⚡",
+      "vis": "public",
+      "st": "arch",
+      "cat": [
+        "odoo",
+        "integ"
+      ],
+      "featured": false,
+      "desc": "Experimento de API externa en FastAPI conectada a Odoo.",
+      "bullets": [],
+      "tags": [
+        "FastAPI",
+        "Odoo",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "Repositorio",
+          "url": "https://github.com/mangrovex/fastApiOdoo"
+        }
+      ],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "banner_carousel_odoo",
+      "code": "mangrovex/banner_carousel_odoo",
+      "icon": "🖼️",
+      "vis": "public",
+      "st": "prod",
+      "cat": [
+        "odoo"
+      ],
+      "featured": false,
+      "desc": "Carrusel de banners para el sitio web de Odoo.",
+      "bullets": [],
+      "tags": [
+        "Odoo Website",
+        "JavaScript"
+      ],
+      "links": [
+        {
+          "label": "Repositorio",
+          "url": "https://github.com/mangrovex/banner_carousel_odoo"
+        }
+      ],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "Laboratorio17",
+      "code": "mangrovex/Laboratorio17",
+      "icon": "🧪",
+      "vis": "public",
+      "st": "arch",
+      "cat": [
+        "odoo"
+      ],
+      "featured": false,
+      "desc": "Laboratorio de pruebas y ejemplos sobre Odoo 17.",
+      "bullets": [],
+      "tags": [
+        "Odoo 17",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "Repositorio",
+          "url": "https://github.com/mangrovex/Laboratorio17"
+        }
+      ],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "Despliegue de Odoo Enterprise",
+      "code": "odoo-enterprise-deploy · odoo-enterprise-addons · odoo-custom-addons",
+      "icon": "🚀",
+      "vis": "private",
+      "st": "prod",
+      "cat": [
+        "devops",
+        "odoo"
+      ],
+      "featured": true,
+      "desc": "Infraestructura y repositorios de addons para desplegar Odoo Enterprise de forma repetible.",
+      "bullets": [
+        "Scripts e imágenes de despliegue",
+        "Addons Enterprise y personalizados versionados por separado"
+      ],
+      "tags": [
+        "Docker",
+        "Odoo EE",
+        "Python"
+      ],
+      "links": [],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "nginx-edge",
+      "code": "nginx-edge",
+      "icon": "🌐",
+      "vis": "private",
+      "st": "prod",
+      "cat": [
+        "devops"
+      ],
+      "featured": false,
+      "desc": "Configuración de borde con Nginx: proxy inverso, TLS y enrutamiento hacia los servicios.",
+      "bullets": [],
+      "tags": [
+        "Nginx",
+        "TLS"
+      ],
+      "links": [],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "Entornos Odoo 17 / 19",
+      "code": "mangrovex17 · mangrovex19",
+      "icon": "🧰",
+      "vis": "private",
+      "st": "wip",
+      "cat": [
+        "odoo"
+      ],
+      "featured": false,
+      "desc": "Espacios de trabajo personales con addons y pruebas sobre Odoo 17 y Odoo 19.",
+      "bullets": [],
+      "tags": [
+        "Odoo 17",
+        "Odoo 19",
+        "Python"
+      ],
+      "links": [],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "APIs para Odoo",
+      "code": "graphql_odoo · graphql_base · odoo_api_17",
+      "icon": "🧬",
+      "vis": "private",
+      "st": "arch",
+      "cat": [
+        "integ",
+        "odoo"
+      ],
+      "featured": false,
+      "desc": "Capas GraphQL y REST sobre Odoo para apps móviles y sistemas externos.",
+      "bullets": [],
+      "tags": [
+        "GraphQL",
+        "REST",
+        "Odoo 17"
+      ],
+      "links": [],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "TJ_Teller_v1",
+      "code": "TJ_Teller_v1",
+      "icon": "💸",
+      "vis": "private",
+      "st": "arch",
+      "cat": [
+        "fin"
+      ],
+      "featured": false,
+      "desc": "Primera versión de una aplicación de caja (teller) para operaciones de remesas.",
+      "bullets": [],
+      "tags": [
+        "Remesas",
+        "Caja"
+      ],
+      "links": [],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    },
+    {
+      "name": "Laboratorio Flutter",
+      "code": "flutter_lab · smart_home_animation · badges_app",
+      "icon": "📱",
+      "vis": "private",
+      "st": "arch",
+      "cat": [
+        "mobile"
+      ],
+      "featured": false,
+      "desc": "Pruebas de interfaz, animaciones y componentes para apps móviles en Flutter.",
+      "bullets": [],
+      "tags": [
+        "Flutter",
+        "Dart"
+      ],
+      "links": [],
+      "pushed_at": null,
+      "stars": 0,
+      "auto": false
+    }
+  ],
+  "archive": [
+    {
+      "name": "prowide-iso20022",
+      "label": "fork · ISO 20022",
+      "pushed_at": null
+    },
+    {
+      "name": "prowide-core",
+      "label": "fork · SWIFT MT",
+      "pushed_at": null
+    },
+    {
+      "name": "pain001",
+      "label": "fork · pagos ISO 20022",
+      "pushed_at": null
+    },
+    {
+      "name": "postman-to-openapi",
+      "label": "fork · OpenAPI",
+      "pushed_at": null
+    },
+    {
+      "name": "ZeroToBlockchain",
+      "label": "fork · blockchain",
+      "pushed_at": null
+    },
+    {
+      "name": "ibm-performance-monitor",
+      "label": "fork · monitoreo",
+      "pushed_at": null
+    },
+    {
+      "name": "HADWIN",
+      "label": "fork",
+      "pushed_at": null
+    },
+    {
+      "name": "panache",
+      "label": "fork · Flutter themes",
+      "pushed_at": null
+    },
+    {
+      "name": "mycompany",
+      "label": "fork",
+      "pushed_at": null
+    },
+    {
+      "name": "PODUNK",
+      "label": "fork",
+      "pushed_at": null
+    },
+    {
+      "name": "Curso_API_rest",
+      "label": "curso · API REST",
+      "pushed_at": null
+    },
+    {
+      "name": "CursoPython",
+      "label": "curso · Python",
+      "pushed_at": null
+    },
+    {
+      "name": "CursoDA",
+      "label": "curso",
+      "pushed_at": null
+    },
+    {
+      "name": "CursoBP",
+      "label": "curso",
+      "pushed_at": null
+    },
+    {
+      "name": "AxelorCourse",
+      "label": "curso · Axelor",
+      "pushed_at": null
+    },
+    {
+      "name": "RabbitMQCourse",
+      "label": "curso · RabbitMQ",
+      "pushed_at": null
+    },
+    {
+      "name": "eActividades",
+      "label": "proyecto",
+      "pushed_at": null
+    },
+    {
+      "name": "RESGASA",
+      "label": "proyecto",
+      "pushed_at": null
+    },
+    {
+      "name": "MACROQUIL",
+      "label": "proyecto",
+      "pushed_at": null
+    },
+    {
+      "name": "frac2023",
+      "label": "proyecto",
+      "pushed_at": null
+    }
+  ],
+  "private_other": [
+    "flowtax",
+    "easydocs",
+    "pos_cr",
+    "rooster",
+    "base_clinic",
+    "tizenhet",
+    "contigo_app",
+    "eShop",
+    "fred_ux",
+    "runakuna",
+    "b2bridge",
+    "sammy",
+    "school",
+    "openedunav",
+    "OdooHA",
+    "Workshop_ACE"
+  ],
+  "counts": {
+    "active": 7,
+    "public": 26,
+    "private": 29
+  }
+}

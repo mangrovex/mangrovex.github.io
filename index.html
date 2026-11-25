@@ -108,6 +108,7 @@
     .links a{text-decoration:none;color:var(--gold)}
     .links a:hover{text-decoration:underline}
     .links .locked{color:var(--muted);font-weight:500}
+    .links .meta{margin-left:auto;color:var(--muted);font:500 12px "JetBrains Mono"}
     .empty{display:none;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line2);border-radius:var(--radius)}
 
     /* archive list */
@@ -148,7 +149,7 @@
   </nav>
 
   <header class="hero wrap" id="top">
-    <span class="kicker"><i></i> Actualizado · noviembre 2026</span>
+    <span class="kicker"><i></i> <span id="updated">Actualizado</span></span>
     <h1>Lo que estoy <em>construyendo</em> ahora.</h1>
     <p class="lead">Un mapa de los desarrollos en curso: frameworks de código abierto, herramientas para Odoo, integraciones y apps móviles. Los proyectos públicos enlazan a su repositorio; los privados se describen aquí y se muestran bajo solicitud.</p>
     <div class="cta">
@@ -218,125 +219,100 @@
 
 <script>
 const GH = "https://github.com/mangrovex/";
-// estado: prod | wip | plan | arch
-const PROJECTS = [
-  // ───── Públicos ─────
-  { name:"Musubi", code:"mangrovex/musubi", icon:"🧶", vis:"public", st:"wip", cat:["integ","devops"], featured:true,
-    desc:"Framework de integración sobre Zato 4.1. Sistemas, APIs e IA conectados en un solo punto, de forma explícita y reproducible.",
-    bullets:["CLI sin dependencias: init, profiles, validate, doctor","Perfiles dev / stage / prod con políticas progresivas","Docker Compose con Zato 4.1 + Caddy, CI en Python 3.11/3.12"],
-    tags:["Python","Zato 4.1","Docker","Caddy","GitHub Actions"],
-    links:[["Repositorio",GH+"musubi"],["Sitio","https://mangrovex.github.io/musubi/"]] },
-  { name:"Chaskidoo", code:"mangrovex/chaskidoo · fork de rocketdoo", icon:"🏃", vis:"public", st:"wip", cat:["odoo","devops"], featured:true,
-    desc:"Entornos de desarrollo y despliegue de Odoo con Docker, con opciones flexibles de base de datos y proxy.",
-    bullets:["rkd init pregunta: PostgreSQL en Docker o en el VPS","Proxy Nginx o Traefik a elección","Funciona en Linux y macOS"],
-    tags:["Odoo","Docker","Nginx","Traefik","Python"],
-    links:[["Repositorio",GH+"chaskidoo"],["Documentación","https://mangrovex.github.io/chaskidoo/"]] },
-  { name:"flutter_paymentez_sdk", code:"mangrovex/flutter_paymentez_sdk", icon:"💳", vis:"public", st:"prod", cat:["fin"],
-    desc:"SDK en Flutter para integrar pagos con tarjeta mediante Paymentez en apps móviles.",
-    tags:["Flutter","Dart","Pagos"], links:[["Repositorio",GH+"flutter_paymentez_sdk"]] },
-  { name:"fastApiOdoo", code:"mangrovex/fastApiOdoo", icon:"⚡", vis:"public", st:"arch", cat:["odoo","integ"],
-    desc:"Experimento de API externa en FastAPI conectada a Odoo.",
-    tags:["FastAPI","Odoo","Python"], links:[["Repositorio",GH+"fastApiOdoo"]] },
-  { name:"banner_carousel_odoo", code:"mangrovex/banner_carousel_odoo", icon:"🖼️", vis:"public", st:"prod", cat:["odoo"],
-    desc:"Carrusel de banners para el sitio web de Odoo.",
-    tags:["Odoo Website","JavaScript"], links:[["Repositorio",GH+"banner_carousel_odoo"]] },
-  { name:"Laboratorio17", code:"mangrovex/Laboratorio17", icon:"🧪", vis:"public", st:"arch", cat:["odoo"],
-    desc:"Laboratorio de pruebas y ejemplos sobre Odoo 17.",
-    tags:["Odoo 17","Python"], links:[["Repositorio",GH+"Laboratorio17"]] },
-
-  // ───── Privados (repositorios privados de mangrovex) ─────
-  { name:"Despliegue de Odoo Enterprise", code:"odoo-enterprise-deploy · odoo-enterprise-addons · odoo-custom-addons", icon:"🚀", vis:"private", st:"prod", cat:["devops","odoo"], featured:true,
-    desc:"Infraestructura y repositorios de addons para desplegar Odoo Enterprise de forma repetible.",
-    bullets:["Scripts e imágenes de despliegue","Addons Enterprise y personalizados versionados por separado"],
-    tags:["Docker","Odoo EE","Python"] },
-  { name:"nginx-edge", code:"nginx-edge", icon:"🌐", vis:"private", st:"prod", cat:["devops"],
-    desc:"Configuración de borde con Nginx: proxy inverso, TLS y enrutamiento hacia los servicios.",
-    tags:["Nginx","TLS"] },
-  { name:"Entornos Odoo 17 / 19", code:"mangrovex17 · mangrovex19", icon:"🧰", vis:"private", st:"wip", cat:["odoo"],
-    desc:"Espacios de trabajo personales con addons y pruebas sobre Odoo 17 y Odoo 19.",
-    tags:["Odoo 17","Odoo 19","Python"] },
-  { name:"APIs para Odoo", code:"graphql_odoo · graphql_base · odoo_api_17", icon:"🧬", vis:"private", st:"arch", cat:["integ","odoo"],
-    desc:"Capas GraphQL y REST sobre Odoo para apps móviles y sistemas externos.",
-    tags:["GraphQL","REST","Odoo 17"] },
-  { name:"TJ_Teller_v1", code:"TJ_Teller_v1", icon:"💸", vis:"private", st:"arch", cat:["fin"],
-    desc:"Primera versión de una aplicación de caja (teller) para operaciones de remesas.",
-    tags:["Remesas","Caja"] },
-  { name:"Laboratorio Flutter", code:"flutter_lab · smart_home_animation · badges_app", icon:"📱", vis:"private", st:"arch", cat:["mobile"],
-    desc:"Pruebas de interfaz, animaciones y componentes para apps móviles en Flutter.",
-    tags:["Flutter","Dart"] },
+const DATA_URLS = [
+  "https://raw.githubusercontent.com/mangrovex/mangrovex.github.io/main/data/projects.json",
+  "data/projects.json"
 ];
-
-const ARCHIVE = [
-  ["prowide-iso20022","fork · ISO 20022"],["prowide-core","fork · SWIFT MT"],["pain001","fork · pagos ISO 20022"],
-  ["postman-to-openapi","fork · OpenAPI"],["ZeroToBlockchain","fork · blockchain"],["ibm-performance-monitor","fork · monitoreo"],
-  ["HADWIN","fork"],["panache","fork · Flutter themes"],["mycompany","fork"],["PODUNK","fork"],
-  ["Curso_API_rest","curso · API REST"],["CursoPython","curso · Python"],["CursoDA","curso"],["CursoBP","curso"],
-  ["AxelorCourse","curso · Axelor"],["RabbitMQCourse","curso · RabbitMQ"],["eActividades","proyecto"],["RESGASA","proyecto"],
-  ["MACROQUIL","proyecto"],["frac2023","proyecto"]
-];
-
-const PRIVATE_OTHER = ["flowtax","easydocs","pos_cr","rooster","base_clinic","tizenhet","contigo_app","eShop","fred_ux","runakuna","b2bridge","sammy","school","openedunav","OdooHA","Workshop_ACE"];
-
 const ST = {prod:"Producción", wip:"En desarrollo", plan:"Diseño / SDD", arch:"Archivo"};
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const CAT_KEYS = ["public","private","cat:odoo","cat:integ","cat:fin","cat:devops","cat:mobile"];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+function ago(iso){
+  if (!iso) return "";
+  const d = (Date.now() - new Date(iso)) / 86400000;
+  if (d < 1) return "hoy";
+  if (d < 2) return "ayer";
+  if (d < 31) return `hace ${Math.floor(d)} días`;
+  if (d < 365) { const m = Math.floor(d/30); return `hace ${m} ${m===1?"mes":"meses"}`; }
+  const y = Math.floor(d/365); return `hace ${y} ${y===1?"año":"años"}`;
+}
 
 function card(p){
   const vis = p.vis === "public" ? '<span class="badge pub">Público</span>' : '<span class="badge priv">🔒 Privado</span>';
-  const bullets = p.bullets ? `<ul>${p.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>` : "";
-  const links = p.links ? p.links.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("")
+  const bullets = p.bullets && p.bullets.length ? `<ul>${p.bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>` : "";
+  const links = p.links && p.links.length ? p.links.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("")
                         : '<span class="locked">Repositorio privado · demo bajo solicitud</span>';
+  const meta = [p.pushed_at ? `⟳ ${ago(p.pushed_at)}` : "", p.stars ? `★ ${p.stars}` : ""].filter(Boolean).join(" · ");
   return `<article class="card${p.featured?" featured":""}">
-    <div class="card-top"><div class="ico">${p.icon}</div>
-      <div class="badges">${vis}<span class="badge st ${p.st}">${ST[p.st]}</span></div></div>
+    <div class="card-top"><div class="ico">${esc(p.icon)}</div>
+      <div class="badges">${vis}<span class="badge st ${p.st}">${ST[p.st]||p.st}</span></div></div>
     <h3>${esc(p.name)}</h3><div class="code">${esc(p.code)}</div>
     <p>${esc(p.desc)}</p>${bullets}
-    <div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
-    <div class="links">${links}</div></article>`;
+    <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+    <div class="links">${links}${meta?`<span class="meta">${meta}</span>`:""}</div></article>`;
 }
 
 const order = {wip:0, prod:1, plan:2, arch:3};
-const sorted = [...PROJECTS].sort((a,b)=> (b.featured|0)-(a.featured|0) || order[a.st]-order[b.st]);
-let filter = "all";
+let PROJECTS = [], filter = "all";
+
+function match(p, f){
+  return f==="all" || (f==="public"&&p.vis==="public") || (f==="private"&&p.vis==="private")
+      || (f.startsWith("cat:") && (p.cat||[]).includes(f.slice(4)));
+}
 
 function render(){
   const q = document.getElementById("q").value.trim().toLowerCase();
-  const list = sorted.filter(p=>{
-    if (filter==="public" && p.vis!=="public") return false;
-    if (filter==="private" && p.vis!=="private") return false;
-    if (filter.startsWith("cat:") && !p.cat.includes(filter.slice(4))) return false;
-    if (q && !(p.name+" "+p.code+" "+p.desc+" "+p.tags.join(" ")).toLowerCase().includes(q)) return false;
-    return true;
-  });
+  const list = PROJECTS.filter(p => match(p, filter) &&
+    (!q || (p.name+" "+p.code+" "+p.desc+" "+(p.tags||[]).join(" ")).toLowerCase().includes(q)));
   document.getElementById("grid").innerHTML = list.map(card).join("");
   document.getElementById("empty").style.display = list.length ? "none" : "block";
 }
-
-document.querySelectorAll(".chip").forEach(c=>{
-  const f = c.dataset.f;
-  const n = PROJECTS.filter(p => f==="all" || (f==="public"&&p.vis==="public") || (f==="private"&&p.vis==="private") || (f.startsWith("cat:")&&p.cat.includes(f.slice(4)))).length;
-  c.insertAdjacentHTML("beforeend", `<span class="n">${n}</span>`);
-  c.addEventListener("click", ()=>{
-    document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
-    c.classList.add("on"); filter = f; render();
-  });
-});
-document.getElementById("q").addEventListener("input", render);
-
-document.getElementById("archive").innerHTML = ARCHIVE.map(([n,t]) =>
-  `<a class="arch-item" href="${GH+n}" target="_blank" rel="noopener"><span>${esc(n)}</span><small>${esc(t)}</small></a>`).join("");
-
-document.getElementById("archive-priv").innerHTML = PRIVATE_OTHER.map(n =>
-  `<div class="arch-item"><span>${esc(n)}</span><small>🔒 privado</small></div>`).join("");
 
 function countUp(id, to){
   const el = document.getElementById(id); let i = 0;
   const step = () => { el.textContent = i; if (i++ < to) setTimeout(step, 40); };
   step();
 }
-countUp("s-active", PROJECTS.filter(p=>p.st!=="arch").length);
-countUp("s-public", PROJECTS.filter(p=>p.vis==="public").length + ARCHIVE.length);
-countUp("s-private", 13 + PRIVATE_OTHER.length);
-render();
+
+async function load(){
+  for (const url of DATA_URLS){
+    try { const r = await fetch(url, {cache:"no-cache"}); if (r.ok) return await r.json(); } catch(e) {}
+  }
+  throw new Error("No se pudo cargar projects.json");
+}
+
+load().then(data => {
+  PROJECTS = [...data.projects].sort((a,b)=> (b.featured|0)-(a.featured|0) || order[a.st]-order[b.st]
+    || String(b.pushed_at||"").localeCompare(String(a.pushed_at||"")));
+
+  document.querySelectorAll(".chip").forEach(c=>{
+    const f = c.dataset.f;
+    c.insertAdjacentHTML("beforeend", `<span class="n">${PROJECTS.filter(p=>match(p,f)).length}</span>`);
+    c.addEventListener("click", ()=>{
+      document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+      c.classList.add("on"); filter = f; render();
+    });
+  });
+  document.getElementById("q").addEventListener("input", render);
+
+  document.getElementById("archive").innerHTML = data.archive.map(a =>
+    `<a class="arch-item" href="${GH+encodeURIComponent(a.name)}" target="_blank" rel="noopener"><span>${esc(a.name)}</span><small>${esc(a.label)}</small></a>`).join("");
+  document.getElementById("archive-priv").innerHTML = data.private_other.map(n =>
+    `<div class="arch-item"><span>${esc(n)}</span><small>🔒 privado</small></div>`).join("");
+
+  const g = new Date(data.generated_at);
+  document.getElementById("updated").textContent = `Actualizado · ${g.getDate()} de ${MESES[g.getMonth()]} ${g.getFullYear()}`;
+
+  countUp("s-active", data.counts.active);
+  countUp("s-public", data.counts.public);
+  countUp("s-private", data.counts.private);
+  render();
+}).catch(err => {
+  document.getElementById("empty").textContent = "No se pudieron cargar los proyectos. Intenta recargar la página.";
+  document.getElementById("empty").style.display = "block";
+  console.error(err);
+});
 </script>
 </body>
 </html>

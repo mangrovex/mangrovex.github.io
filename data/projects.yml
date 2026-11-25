@@ -1,0 +1,167 @@
+# Proyectos que se muestran en https://mangrovex.github.io
+#
+# La GitHub Action "Sincronizar proyectos" lee este archivo cada 6 horas, lo combina
+# con los datos de la API de GitHub (descripción, lenguaje, estrellas, último push)
+# y genera data/projects.json, que es lo que carga la página.
+#
+# Reglas:
+#   - Cada tarjeta agrupa uno o más repos (`repos`). Si no pones `description`,
+#     se usa la descripción del repo en GitHub.
+#   - status: prod | wip | plan | arch
+#   - categories: odoo | integ | fin | devops | mobile
+#   - Los repos privados SOLO aparecen si están en este archivo, o si tienen el
+#     topic `portafolio` en GitHub (entonces se crea una tarjeta automática).
+#   - Los repos públicos que no estén en una tarjeta van a "Archivo y formación".
+
+cards:
+  - name: Musubi
+    repos: [musubi]
+    icon: "🧶"
+    status: wip
+    categories: [integ, devops]
+    featured: true
+    description: Framework de integración sobre Zato 4.1. Sistemas, APIs e IA conectados en un solo punto, de forma explícita y reproducible.
+    bullets:
+      - "CLI sin dependencias: init, profiles, validate, doctor"
+      - Perfiles dev / stage / prod con políticas progresivas
+      - Docker Compose con Zato 4.1 + Caddy, CI en Python 3.11/3.12
+    tags: [Python, Zato 4.1, Docker, Caddy, GitHub Actions]
+    links:
+      - {label: Sitio, url: "https://mangrovex.github.io/musubi/"}
+
+  - name: Chaskidoo
+    repos: [chaskidoo]
+    code: mangrovex/chaskidoo · fork de rocketdoo
+    icon: "🏃"
+    status: wip
+    categories: [odoo, devops]
+    featured: true
+    description: Entornos de desarrollo y despliegue de Odoo con Docker, con opciones flexibles de base de datos y proxy.
+    bullets:
+      - "rkd init pregunta: PostgreSQL en Docker o en el VPS"
+      - Proxy Nginx o Traefik a elección
+      - Funciona en Linux y macOS
+    tags: [Odoo, Docker, Nginx, Traefik, Python]
+    links:
+      - {label: Documentación, url: "https://mangrovex.github.io/chaskidoo/"}
+
+  - name: flutter_paymentez_sdk
+    repos: [flutter_paymentez_sdk]
+    icon: "💳"
+    status: prod
+    categories: [fin, mobile]
+    description: SDK en Flutter para integrar pagos con tarjeta mediante Paymentez en apps móviles.
+    tags: [Flutter, Dart, Pagos]
+
+  - name: fastApiOdoo
+    repos: [fastApiOdoo]
+    icon: "⚡"
+    status: arch
+    categories: [odoo, integ]
+    description: Experimento de API externa en FastAPI conectada a Odoo.
+    tags: [FastAPI, Odoo, Python]
+
+  - name: banner_carousel_odoo
+    repos: [banner_carousel_odoo]
+    icon: "🖼️"
+    status: prod
+    categories: [odoo]
+    description: Carrusel de banners para el sitio web de Odoo.
+    tags: [Odoo Website, JavaScript]
+
+  - name: Laboratorio17
+    repos: [Laboratorio17]
+    icon: "🧪"
+    status: arch
+    categories: [odoo]
+    description: Laboratorio de pruebas y ejemplos sobre Odoo 17.
+    tags: [Odoo 17, Python]
+
+  # ───── Privados ─────
+  - name: Despliegue de Odoo Enterprise
+    repos: [odoo-enterprise-deploy, odoo-enterprise-addons, odoo-custom-addons]
+    visibility: private
+    icon: "🚀"
+    status: prod
+    categories: [devops, odoo]
+    featured: true
+    description: Infraestructura y repositorios de addons para desplegar Odoo Enterprise de forma repetible.
+    bullets:
+      - Scripts e imágenes de despliegue
+      - Addons Enterprise y personalizados versionados por separado
+    tags: [Docker, Odoo EE, Python]
+
+  - name: nginx-edge
+    repos: [nginx-edge]
+    visibility: private
+    icon: "🌐"
+    status: prod
+    categories: [devops]
+    description: "Configuración de borde con Nginx: proxy inverso, TLS y enrutamiento hacia los servicios."
+    tags: [Nginx, TLS]
+
+  - name: Entornos Odoo 17 / 19
+    repos: [mangrovex17, mangrovex19]
+    visibility: private
+    icon: "🧰"
+    status: wip
+    categories: [odoo]
+    description: Espacios de trabajo personales con addons y pruebas sobre Odoo 17 y Odoo 19.
+    tags: [Odoo 17, Odoo 19, Python]
+
+  - name: APIs para Odoo
+    repos: [graphql_odoo, graphql_base, odoo_api_17]
+    visibility: private
+    icon: "🧬"
+    status: arch
+    categories: [integ, odoo]
+    description: Capas GraphQL y REST sobre Odoo para apps móviles y sistemas externos.
+    tags: [GraphQL, REST, Odoo 17]
+
+  - name: TJ_Teller_v1
+    repos: [TJ_Teller_v1]
+    visibility: private
+    icon: "💸"
+    status: arch
+    categories: [fin]
+    description: Primera versión de una aplicación de caja (teller) para operaciones de remesas.
+    tags: [Remesas, Caja]
+
+  - name: Laboratorio Flutter
+    repos: [flutter_lab, smart_home_animation, badges_app]
+    visibility: private
+    icon: "📱"
+    status: arch
+    categories: [mobile]
+    description: Pruebas de interfaz, animaciones y componentes para apps móviles en Flutter.
+    tags: [Flutter, Dart]
+
+# Repos privados que se listan solo por nombre (sin tarjeta).
+private_other: [flowtax, easydocs, pos_cr, rooster, base_clinic, tizenhet, contigo_app, eShop,
+                fred_ux, runakuna, b2bridge, sammy, school, openedunav, OdooHA, Workshop_ACE]
+
+# Repos públicos que nunca se muestran.
+exclude: [mangrovex, mangrovex.github.io, manex_odoo_repository]
+
+# Etiquetas para el archivo (si no se indica, se usa "fork" o el lenguaje del repo).
+archive_labels:
+  prowide-iso20022: fork · ISO 20022
+  prowide-core: fork · SWIFT MT
+  pain001: fork · pagos ISO 20022
+  postman-to-openapi: fork · OpenAPI
+  ZeroToBlockchain: fork · blockchain
+  ibm-performance-monitor: fork · monitoreo
+  HADWIN: fork
+  panache: fork · Flutter themes
+  mycompany: fork
+  PODUNK: fork
+  Curso_API_rest: curso · API REST
+  CursoPython: curso · Python
+  CursoDA: curso
+  CursoBP: curso
+  AxelorCourse: curso · Axelor
+  RabbitMQCourse: curso · RabbitMQ
+  eActividades: proyecto
+  RESGASA: proyecto
+  MACROQUIL: proyecto
+  frac2023: proyecto

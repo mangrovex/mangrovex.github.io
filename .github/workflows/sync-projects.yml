@@ -1,0 +1,45 @@
+name: Sincronizar proyectos
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # cada 6 horas
+  workflow_dispatch:          # botón "Run workflow" en la pestaña Actions
+  push:
+    branches: [main]
+    paths: ["data/projects.yml", "scripts/build_projects.py"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-projects
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generar data/projects.json
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          pip install --quiet pyyaml
+          python scripts/build_projects.py
+
+      - name: Publicar cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/projects.json
+          if git diff --cached --quiet; then
+            echo "Nada que publicar."
+          else
+            git commit -m "Actualiza proyectos desde GitHub"
+            git push
+          fi
