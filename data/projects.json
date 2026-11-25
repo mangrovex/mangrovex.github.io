@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-25T23:56:17+00:00",
-  "source": "yml",
+  "generated_at": "2026-11-25T23:57:23+00:00",
+  "source": "api-publica",
   "projects": [
     {
       "name": "Musubi",
@@ -36,7 +36,7 @@
           "url": "https://mangrovex.github.io/musubi/"
         }
       ],
-      "pushed_at": null,
+      "pushed_at": "2026-11-24T18:43:27Z",
       "stars": 0,
       "auto": false
     },
@@ -74,7 +74,7 @@
           "url": "https://mangrovex.github.io/chaskidoo/"
         }
       ],
-      "pushed_at": null,
+      "pushed_at": "2026-11-24T14:18:01Z",
       "stars": 0,
       "auto": false
     },
@@ -102,8 +102,8 @@
           "url": "https://github.com/mangrovex/flutter_paymentez_sdk"
         }
       ],
-      "pushed_at": null,
-      "stars": 0,
+      "pushed_at": "2026-01-21T03:50:20Z",
+      "stars": 1,
       "auto": false
     },
     {
@@ -130,8 +130,8 @@
           "url": "https://github.com/mangrovex/fastApiOdoo"
         }
       ],
-      "pushed_at": null,
-      "stars": 0,
+      "pushed_at": "2023-02-25T16:59:33Z",
+      "stars": 1,
       "auto": false
     },
     {
@@ -156,8 +156,8 @@
           "url": "https://github.com/mangrovex/banner_carousel_odoo"
         }
       ],
-      "pushed_at": null,
-      "stars": 0,
+      "pushed_at": "2024-06-04T20:18:00Z",
+      "stars": 1,
       "auto": false
     },
     {
@@ -182,7 +182,7 @@
           "url": "https://github.com/mangrovex/Laboratorio17"
         }
       ],
-      "pushed_at": null,
+      "pushed_at": "2024-08-29T16:06:56Z",
       "stars": 0,
       "auto": false
     },
@@ -323,104 +323,114 @@
   ],
   "archive": [
     {
-      "name": "prowide-iso20022",
-      "label": "fork · ISO 20022",
-      "pushed_at": null
+      "name": "account_facturaec_invoice",
+      "label": "proyecto",
+      "pushed_at": "2026-11-25T23:51:28Z"
+    },
+    {
+      "name": "flutter_odoo_repository",
+      "label": "Dart",
+      "pushed_at": "2025-03-23T02:57:49Z"
     },
     {
       "name": "prowide-core",
       "label": "fork · SWIFT MT",
-      "pushed_at": null
+      "pushed_at": "2024-03-27T18:22:34Z"
+    },
+    {
+      "name": "prowide-iso20022",
+      "label": "fork · ISO 20022",
+      "pushed_at": "2024-01-17T14:13:03Z"
     },
     {
       "name": "pain001",
       "label": "fork · pagos ISO 20022",
-      "pushed_at": null
-    },
-    {
-      "name": "postman-to-openapi",
-      "label": "fork · OpenAPI",
-      "pushed_at": null
-    },
-    {
-      "name": "ZeroToBlockchain",
-      "label": "fork · blockchain",
-      "pushed_at": null
-    },
-    {
-      "name": "ibm-performance-monitor",
-      "label": "fork · monitoreo",
-      "pushed_at": null
-    },
-    {
-      "name": "HADWIN",
-      "label": "fork",
-      "pushed_at": null
-    },
-    {
-      "name": "panache",
-      "label": "fork · Flutter themes",
-      "pushed_at": null
-    },
-    {
-      "name": "mycompany",
-      "label": "fork",
-      "pushed_at": null
-    },
-    {
-      "name": "PODUNK",
-      "label": "fork",
-      "pushed_at": null
-    },
-    {
-      "name": "Curso_API_rest",
-      "label": "curso · API REST",
-      "pushed_at": null
-    },
-    {
-      "name": "CursoPython",
-      "label": "curso · Python",
-      "pushed_at": null
-    },
-    {
-      "name": "CursoDA",
-      "label": "curso",
-      "pushed_at": null
-    },
-    {
-      "name": "CursoBP",
-      "label": "curso",
-      "pushed_at": null
-    },
-    {
-      "name": "AxelorCourse",
-      "label": "curso · Axelor",
-      "pushed_at": null
-    },
-    {
-      "name": "RabbitMQCourse",
-      "label": "curso · RabbitMQ",
-      "pushed_at": null
-    },
-    {
-      "name": "eActividades",
-      "label": "proyecto",
-      "pushed_at": null
-    },
-    {
-      "name": "RESGASA",
-      "label": "proyecto",
-      "pushed_at": null
-    },
-    {
-      "name": "MACROQUIL",
-      "label": "proyecto",
-      "pushed_at": null
+      "pushed_at": "2024-01-12T19:18:05Z"
     },
     {
       "name": "frac2023",
       "label": "proyecto",
-      "pushed_at": null
+      "pushed_at": "2023-05-05T09:24:54Z"
+    },
+    {
+      "name": "HADWIN",
+      "label": "fork",
+      "pushed_at": "2023-03-12T15:54:40Z"
+    },
+    {
+      "name": "postman-to-openapi",
+      "label": "fork · OpenAPI",
+      "pushed_at": "2022-07-16T11:25:40Z"
+    },
+    {
+      "name": "mycompany",
+      "label": "fork",
+      "pushed_at": "2022-05-31T11:55:07Z"
+    },
+    {
+      "name": "panache",
+      "label": "fork · Flutter themes",
+      "pushed_at": "2022-05-20T23:11:32Z"
+    },
+    {
+      "name": "RESGASA",
+      "label": "proyecto",
+      "pushed_at": "2020-07-07T17:06:26Z"
+    },
+    {
+      "name": "Curso_API_rest",
+      "label": "curso · API REST",
+      "pushed_at": "2020-06-10T00:48:27Z"
+    },
+    {
+      "name": "eActividades",
+      "label": "proyecto",
+      "pushed_at": "2020-06-08T22:24:47Z"
+    },
+    {
+      "name": "CursoDA",
+      "label": "curso",
+      "pushed_at": "2020-03-07T13:31:25Z"
+    },
+    {
+      "name": "CursoPython",
+      "label": "curso · Python",
+      "pushed_at": "2020-03-04T19:11:48Z"
+    },
+    {
+      "name": "AxelorCourse",
+      "label": "curso · Axelor",
+      "pushed_at": "2019-02-04T03:08:06Z"
+    },
+    {
+      "name": "MACROQUIL",
+      "label": "proyecto",
+      "pushed_at": "2018-09-11T01:39:49Z"
+    },
+    {
+      "name": "RabbitMQCourse",
+      "label": "curso · RabbitMQ",
+      "pushed_at": "2018-06-13T11:25:49Z"
+    },
+    {
+      "name": "CursoBP",
+      "label": "curso",
+      "pushed_at": "2018-05-23T12:59:20Z"
+    },
+    {
+      "name": "ZeroToBlockchain",
+      "label": "fork · blockchain",
+      "pushed_at": "2018-04-18T03:44:44Z"
+    },
+    {
+      "name": "ibm-performance-monitor",
+      "label": "fork · monitoreo",
+      "pushed_at": "2017-11-17T18:18:10Z"
+    },
+    {
+      "name": "PODUNK",
+      "label": "fork",
+      "pushed_at": "2017-03-07T13:09:10Z"
     }
   ],
   "private_other": [
@@ -443,7 +453,7 @@
   ],
   "counts": {
     "active": 7,
-    "public": 26,
+    "public": 28,
     "private": 29
   }
 }
