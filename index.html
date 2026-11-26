@@ -12,14 +12,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230B1F3A'/><text x='50%' y='56%' font-family='Arial' font-weight='700' font-size='34' fill='%23C9A227' text-anchor='middle' dominant-baseline='middle'>M</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="assets/mangrovex-icon.svg">
+  <meta property="og:image" content="https://mangrovex.github.io/assets/mangrovex-icon.png">
   <style>
     :root{
-      --bg:#07131F; --bg2:#0B1F3A; --panel:#0F2742; --panel2:#132F50;
-      --line:rgba(201,162,39,.18); --line2:rgba(230,237,245,.08);
-      --text:#E6EDF5; --muted:#8FA3B8; --gold:#C9A227; --gold2:#E7C65A;
-      --odoo:#A46D96; --ok:#3FB68B; --wip:#E7C65A; --plan:#6EA8FE; --arch:#6B7C8F;
-      --radius:18px;
+      --bg:#FFFFFF; --soft:#F4F8FA; --soft2:#EAF3F6;
+      --line:#DCE6EC; --line2:#E8EEF2;
+      --text:#0B2E4F; --muted:#4C6A86;
+      --teal:#14A9B8; --teal-ink:#0C7682; --teal-soft:rgba(20,169,184,.10);
+      --ok:#1E8A5A; --wip:#B26A0A; --plan:#2F66C8; --arch:#6B7C8F;
+      --radius:18px; --shadow:0 1px 2px rgba(11,46,79,.04),0 8px 24px -12px rgba(11,46,79,.14);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -27,41 +29,41 @@
     a{color:inherit}
     .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-    /* background */
-    .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+    /* fondo: retícula tipo placa de circuito, muy tenue */
+    .bg{position:absolute;inset:0 0 auto 0;height:760px;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(180deg,var(--soft) 0%,#fff 100%)}
     .bg::before{content:"";position:absolute;inset:0;
-      background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);
-      background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 0%,#000 25%,transparent 70%)}
-    .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45}
-    .orb.a{width:520px;height:520px;background:#15365F;top:-160px;left:-120px}
-    .orb.b{width:420px;height:420px;background:#C9A22755;top:-80px;right:-120px}
+      background-image:radial-gradient(circle,rgba(11,46,79,.10) 1.2px,transparent 1.4px);
+      background-size:28px 28px;mask-image:linear-gradient(180deg,#000 30%,transparent 95%)}
 
     /* nav */
-    nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(7,19,31,.7);border-bottom:1px solid var(--line2)}
-    nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk";font-weight:700;text-decoration:none}
-    .brand img{width:32px;height:32px;border-radius:10px;border:1px solid var(--line)}
-    .brand span{color:var(--gold)}
-    nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+    nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(255,255,255,.82);border-bottom:1px solid var(--line2)}
+    nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{display:flex;align-items:center;text-decoration:none}
+    .brand img{height:34px;width:auto;display:block}
+    nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500;color:var(--muted)}
     nav ul a{text-decoration:none}
-    nav ul a:hover{color:var(--text)}
+    nav ul a:hover{color:var(--teal-ink)}
 
     /* hero */
-    header.hero{padding:88px 0 40px}
-    .kicker{display:inline-flex;align-items:center;gap:8px;font:500 13px "JetBrains Mono";color:var(--gold);background:rgba(201,162,39,.08);border:1px solid var(--line);padding:6px 12px;border-radius:99px}
-    .kicker i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(63,182,139,.2);animation:pulse 2s infinite}
-    @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(63,182,139,0)}}
-    h1{font-family:"Space Grotesk";font-size:clamp(38px,6vw,68px);line-height:1.04;letter-spacing:-.02em;margin:22px 0 18px;max-width:900px}
-    h1 em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .lead{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+    header.hero{padding:72px 0 40px}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;align-items:center}
+    .hero-art{display:flex;justify-content:center}
+    .hero-art img{width:100%;max-width:400px;height:auto}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font:500 13px "JetBrains Mono";color:var(--teal-ink);background:var(--teal-soft);border:1px solid rgba(20,169,184,.25);padding:6px 12px;border-radius:99px}
+    .kicker i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(30,138,90,.18);animation:pulse 2s infinite}
+    @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(30,138,90,0)}}
+    h1{font-family:"Space Grotesk";font-size:clamp(38px,5.4vw,64px);line-height:1.04;letter-spacing:-.02em;margin:22px 0 18px}
+    h1 em{font-style:normal;color:var(--teal-ink)}
+    .lead{font-size:18px;color:var(--muted);max-width:620px;margin:0}
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--line2);background:var(--panel);transition:.2s}
-    .btn:hover{border-color:var(--gold);transform:translateY(-1px)}
-    .btn.primary{background:var(--gold);color:#0B1F3A;border-color:var(--gold)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--text);transition:.2s}
+    .btn:hover{border-color:var(--teal);transform:translateY(-1px)}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .btn.primary:hover{background:#123F66}
     .btn svg{width:16px;height:16px}
 
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
-    .stat{background:linear-gradient(180deg,var(--panel),transparent);border:1px solid var(--line2);border-radius:var(--radius);padding:20px}
+    .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
     .stat b{display:block;font:700 34px "Space Grotesk";color:var(--text)}
     .stat span{font-size:13px;color:var(--muted)}
 
@@ -69,76 +71,83 @@
     section{padding:56px 0}
     .sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}
     h2{font-family:"Space Grotesk";font-size:32px;margin:0;letter-spacing:-.01em}
-    h2 small{display:block;font:500 13px "JetBrains Mono";color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+    h2 small{display:block;font:500 13px "JetBrains Mono";color:var(--teal-ink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
     .sec-head p{margin:6px 0 0;color:var(--muted);max-width:620px}
 
     /* toolbar */
     .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
-    .chip{cursor:pointer;border:1px solid var(--line2);background:var(--panel);color:var(--muted);padding:8px 14px;border-radius:99px;font:500 13px Inter;transition:.15s}
-    .chip:hover{color:var(--text)}
-    .chip.on{background:var(--gold);color:#0B1F3A;border-color:var(--gold)}
+    .chip{cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--muted);padding:8px 14px;border-radius:99px;font:500 13px Inter;transition:.15s}
+    .chip:hover{color:var(--text);border-color:var(--teal)}
+    .chip.on{background:var(--text);color:#fff;border-color:var(--text)}
     .chip .n{opacity:.7;margin-left:4px;font-family:"JetBrains Mono";font-size:12px}
     .search{margin-left:auto;position:relative}
-    .search input{background:var(--panel);border:1px solid var(--line2);border-radius:12px;color:var(--text);padding:10px 14px 10px 36px;font:14px Inter;width:240px;outline:none}
-    .search input:focus{border-color:var(--gold)}
+    .search input{background:#fff;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:10px 14px 10px 36px;font:14px Inter;width:240px;outline:none}
+    .search input:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-soft)}
     .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;color:var(--muted)}
 
     /* cards */
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-    .card{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line2);border-radius:var(--radius);padding:22px;transition:.2s;overflow:hidden}
-    .card:hover{border-color:var(--line);transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
-    .card.featured::after{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+    .card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:.2s;overflow:hidden;box-shadow:var(--shadow)}
+    .card:hover{border-color:rgba(20,169,184,.5);transform:translateY(-3px);box-shadow:0 2px 4px rgba(11,46,79,.05),0 18px 40px -18px rgba(11,46,79,.25)}
+    .card.featured::after{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--teal),rgba(20,169,184,0))}
     .card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
-    .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:rgba(201,162,39,.1);border:1px solid var(--line)}
+    .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--soft);border:1px solid var(--line)}
     .badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-    .badge{font:500 11px "JetBrains Mono";padding:4px 8px;border-radius:7px;border:1px solid var(--line2);color:var(--muted);white-space:nowrap}
-    .badge.pub{color:#7EE2B8;border-color:rgba(63,182,139,.35)}
-    .badge.priv{color:#F2B880;border-color:rgba(242,184,128,.35)}
+    .badge{font:500 11px "JetBrains Mono";padding:4px 8px;border-radius:7px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;background:#fff}
+    .badge.pub{color:var(--ok);border-color:rgba(30,138,90,.3);background:rgba(30,138,90,.06)}
+    .badge.priv{color:#9A5412;border-color:rgba(154,84,18,.28);background:rgba(154,84,18,.06)}
     .st{display:inline-flex;align-items:center;gap:6px}
     .st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
     .st.prod{color:var(--ok)} .st.wip{color:var(--wip)} .st.plan{color:var(--plan)} .st.arch{color:var(--arch)}
     .card h3{font:600 20px "Space Grotesk";margin:0 0 4px}
-    .card .code{font:12px "JetBrains Mono";color:var(--gold);margin-bottom:10px;word-break:break-word}
+    .card .code{font:12px "JetBrains Mono";color:var(--teal-ink);margin-bottom:10px;word-break:break-word}
     .card p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
     .card ul{margin:0 0 14px;padding-left:18px;color:var(--muted);font-size:13.5px}
     .card ul li{margin:3px 0}
     .tags{display:flex;gap:6px;flex-wrap:wrap;margin:auto 0 16px}
-    .tag{font-size:12px;padding:3px 9px;border-radius:99px;background:rgba(230,237,245,.06);color:#C4D1DE}
+    .tag{font-size:12px;padding:3px 9px;border-radius:99px;background:var(--soft);color:#2E4D6A;border:1px solid var(--line2)}
     .links{display:flex;gap:14px;flex-wrap:wrap;font-size:13.5px;font-weight:600;border-top:1px solid var(--line2);padding-top:14px}
-    .links a{text-decoration:none;color:var(--gold)}
+    .links a{text-decoration:none;color:var(--teal-ink)}
     .links a:hover{text-decoration:underline}
     .links .locked{color:var(--muted);font-weight:500}
     .links .meta{margin-left:auto;color:var(--muted);font:500 12px "JetBrains Mono"}
-    .empty{display:none;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line2);border-radius:var(--radius)}
+    .empty{display:none;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line);border-radius:var(--radius)}
 
     /* archive list */
     .archive{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-    .arch-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid var(--line2);border-radius:12px;background:rgba(15,39,66,.5);font-size:14px;text-decoration:none;transition:.15s}
-    .arch-item:hover{border-color:var(--line)}
+    .arch-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:14px;text-decoration:none;transition:.15s}
+    a.arch-item:hover{border-color:var(--teal);color:var(--teal-ink)}
     .arch-item small{color:var(--muted);font:11px "JetBrains Mono"}
 
     /* contact */
-    .contact{background:linear-gradient(120deg,var(--bg2),var(--panel2));border:1px solid var(--line);border-radius:24px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+    .contact{background:var(--soft);border:1px solid var(--line);border-radius:24px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
     .contact h2{font-size:28px}
     .contact p{color:var(--muted);margin:8px 0 0;max-width:560px}
     footer{padding:36px 0 60px;color:var(--muted);font-size:13px;text-align:center}
+    footer img{height:30px;display:block;margin:0 auto 12px;opacity:.9}
+    footer a{color:var(--teal-ink)}
 
+    @media (max-width:860px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-art{order:-1}
+      .hero-art img{max-width:220px}
+    }
     @media (max-width:760px){
       nav ul{display:none}
       .stats{grid-template-columns:repeat(2,1fr)}
       .search{margin-left:0;width:100%}
       .search input{width:100%}
-      header.hero{padding-top:56px}
+      header.hero{padding-top:40px}
     }
     @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   </style>
 </head>
 <body>
-  <div class="bg"><div class="orb a"></div><div class="orb b"></div></div>
+  <div class="bg"></div>
 
   <nav>
     <div class="wrap">
-      <a class="brand" href="#top"><img src="https://github.com/mangrovex.png?size=64" alt="">mangrovex<span>.</span></a>
+      <a class="brand" href="#top" aria-label="mangrovex, inicio"><img src="assets/mangrovex-compact.svg" alt="mangrovex"></a>
       <ul>
         <li><a href="#desarrollos">Desarrollos</a></li>
         <li><a href="#archivo">Archivo</a></li>
@@ -149,13 +158,18 @@
   </nav>
 
   <header class="hero wrap" id="top">
-    <span class="kicker"><i></i> <span id="updated">Actualizado</span></span>
-    <h1>Lo que estoy <em>construyendo</em> ahora.</h1>
-    <p class="lead">Un mapa de los desarrollos en curso: frameworks de código abierto, herramientas para Odoo, integraciones y apps móviles. Los proyectos públicos enlazan a su repositorio; los privados se describen aquí y se muestran bajo solicitud.</p>
-    <div class="cta">
-      <a class="btn primary" href="#desarrollos">Ver desarrollos</a>
-      <a class="btn" href="https://github.com/mangrovex"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Perfil en GitHub</a>
-      <a class="btn" href="https://manexware.com" target="_blank" rel="noopener">Manexware S.A. ↗</a>
+    <div class="hero-grid">
+      <div>
+      <span class="kicker"><i></i> <span id="updated">Actualizado</span></span>
+      <h1>Lo que estoy <em>construyendo</em> ahora.</h1>
+      <p class="lead">Un mapa de los desarrollos en curso: frameworks de código abierto, herramientas para Odoo, integraciones y apps móviles. Los proyectos públicos enlazan a su repositorio; los privados se describen aquí y se muestran bajo solicitud.</p>
+      <div class="cta">
+        <a class="btn primary" href="#desarrollos">Ver desarrollos</a>
+        <a class="btn" href="https://github.com/mangrovex"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Perfil en GitHub</a>
+        <a class="btn" href="https://manexware.com" target="_blank" rel="noopener">Manexware S.A. ↗</a>
+      </div>
+      </div>
+      <div class="hero-art"><img src="assets/mangrovex-icon.svg" alt="Ícono de mangrovex: un manglar cuyas ramas son pistas de circuito y cuyas raíces terminan en conectores"></div>
     </div>
     <div class="stats">
       <div class="stat"><b id="s-active">0</b><span>desarrollos activos</span></div>
@@ -213,6 +227,7 @@
   </section>
 
   <footer>
+    <img src="assets/mangrovex-compact.svg" alt="">
     Manuel Vega · Guayaquil, Ecuador<br>
     <span style="opacity:.7">¿Buscabas el generador de íconos para Odoo? Está en <a href="ibo/">/ibo</a>.</span>
   </footer>
