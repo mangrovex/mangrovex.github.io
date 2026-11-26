@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultoría Odoo ERP · Manuel Vega Ulloa (mangrovex)</title>
+  <meta name="description" content="Consultoría Odoo ERP independiente de Manuel Vega Ulloa: análisis de procesos, requerimientos, planificación de módulos, flujos, integraciones, migración de datos y hoja de ruta de implementación.">
+  <meta name="author" content="Manuel Vega Ulloa">
+  <meta property="og:title" content="Consultoría Odoo ERP · Manuel Vega Ulloa">
+  <meta property="og:description" content="Primero el negocio, después los módulos: una hoja de ruta Odoo basada en cómo opera realmente tu empresa.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://mangrovex.github.io/assets/mangrovex-icon.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/mangrovex-icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFFFFF; --soft:#F4F8FA; --soft2:#EAF3F6;
+      --line:#DCE6EC; --line2:#E8EEF2;
+      --text:#0B2E4F; --muted:#4C6A86;
+      --teal:#14A9B8; --teal-ink:#0C7682; --teal-soft:rgba(20,169,184,.10);
+      --ok:#1E8A5A; --wip:#B26A0A; --plan:#2F66C8;
+      --radius:18px; --shadow:0 1px 2px rgba(11,46,79,.04),0 8px 24px -12px rgba(11,46,79,.14);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+    .bg{position:absolute;inset:0 0 auto 0;height:760px;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(180deg,var(--soft) 0%,#fff 100%)}
+    .bg::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(11,46,79,.10) 1.2px,transparent 1.4px);background-size:28px 28px;mask-image:linear-gradient(180deg,#000 30%,transparent 95%)}
+
+    nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(255,255,255,.82);border-bottom:1px solid var(--line2)}
+    nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{display:flex;align-items:center;text-decoration:none}
+    .brand img{height:34px;width:auto;display:block}
+    nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500;color:var(--muted)}
+    nav ul a{text-decoration:none}
+    nav ul a:hover,nav ul a.on{color:var(--teal-ink)}
+
+    header.hero{padding:72px 24px 40px}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;align-items:center}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font:500 13px "JetBrains Mono";color:var(--teal-ink);background:var(--teal-soft);border:1px solid rgba(20,169,184,.25);padding:6px 12px;border-radius:99px}
+    .kicker i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(30,138,90,.18);animation:pulse 2s infinite}
+    @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(30,138,90,0)}}
+    h1{font-family:"Space Grotesk";font-size:clamp(38px,5.4vw,62px);line-height:1.04;letter-spacing:-.02em;margin:22px 0 18px}
+    h1 em{font-style:normal;color:var(--teal-ink)}
+    .lead{font-size:18px;color:var(--muted);max-width:620px;margin:0}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--text);transition:.2s}
+    .btn:hover{border-color:var(--teal);transform:translateY(-1px)}
+    .btn.primary{background:var(--text);color:#fff;border-color:var(--text)}
+    .btn.primary:hover{background:#123F66}
+
+    /* tarjeta "pregunta" del hero */
+    .qcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow)}
+    .qcard .q{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;font-size:15px}
+    .qcard .q b{font:500 11px "JetBrains Mono";text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
+    .q.bad{background:#FBF4EC;color:#7A4A12}
+    .q.good{background:var(--teal-soft);color:var(--teal-ink);margin-top:10px}
+    .q .mk{font:700 18px "Space Grotesk";line-height:1.2}
+    .qcard .sig{margin-top:18px;padding-top:16px;border-top:1px solid var(--line2);display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--muted)}
+    .qcard .sig img{width:44px;height:44px}
+    .qcard .sig strong{color:var(--text);display:block;font-size:14.5px}
+
+    section.wrap{padding-top:64px;padding-bottom:16px}
+    .sec-head{margin-bottom:28px}
+    h2{font-family:"Space Grotesk";font-size:32px;margin:0;letter-spacing:-.01em}
+    h2 small{display:block;font:500 13px "JetBrains Mono";color:var(--teal-ink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+    .sec-head p{margin:8px 0 0;color:var(--muted);max-width:680px}
+
+    /* síntomas */
+    .pains{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .pain{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+    .pain .e{font-size:22px}
+    .pain h4{margin:10px 0 4px;font:600 16px "Space Grotesk"}
+    .pain p{margin:0;color:var(--muted);font-size:14px}
+
+    /* servicios */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+    .card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:.2s;box-shadow:var(--shadow)}
+    .card:hover{border-color:rgba(20,169,184,.5);transform:translateY(-3px);box-shadow:0 2px 4px rgba(11,46,79,.05),0 18px 40px -18px rgba(11,46,79,.25)}
+    .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--soft);border:1px solid var(--line)}
+    .num{font:500 12px "JetBrains Mono";color:var(--muted)}
+    .card h3{font:600 19px "Space Grotesk";margin:0 0 6px}
+    .card p{color:var(--muted);font-size:14.5px;margin:0 0 12px}
+    .card ul{margin:0;padding-left:18px;color:var(--muted);font-size:13.5px}
+    .card ul li{margin:3px 0}
+
+    /* flujos */
+    .flows{display:grid;gap:16px}
+    .flow{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .flow h4{margin:0 0 14px;font:600 16px "Space Grotesk"}
+    .steps{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+    .step{font:500 13px "JetBrains Mono";padding:8px 12px;border-radius:10px;background:var(--soft);border:1px solid var(--line);white-space:nowrap}
+    .arrow{color:var(--teal);font-weight:700}
+    .plan-areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .tag{font-size:13px;padding:5px 11px;border-radius:99px;background:var(--soft);color:#2E4D6A;border:1px solid var(--line2)}
+
+    /* brechas */
+    .gap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .gcol{border-radius:var(--radius);padding:22px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+    .gcol .lvl{font:500 12px "JetBrains Mono";text-transform:uppercase;letter-spacing:.08em}
+    .gcol h4{margin:6px 0 8px;font:600 19px "Space Grotesk"}
+    .gcol p{margin:0;color:var(--muted);font-size:14.5px}
+    .gcol.std{border-top:4px solid var(--ok)} .gcol.std .lvl{color:var(--ok)}
+    .gcol.cfg{border-top:4px solid var(--plan)} .gcol.cfg .lvl{color:var(--plan)}
+    .gcol.dev{border-top:4px solid var(--wip)} .gcol.dev .lvl{color:var(--wip)}
+    .note{margin-top:18px;padding:16px 20px;border-radius:14px;background:var(--soft);border:1px solid var(--line);color:var(--muted);font-size:15px}
+    .note b{color:var(--text)}
+
+    /* fases */
+    .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:ph}
+    .phase{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow)}
+    .phase::before{counter-increment:ph;content:"0" counter(ph);font:700 30px "Space Grotesk";color:var(--teal);display:block;margin-bottom:6px}
+    .phase h4{margin:0 0 6px;font:600 17px "Space Grotesk"}
+    .phase p{margin:0;color:var(--muted);font-size:14px}
+
+    /* entregables */
+    .deliv{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+    .deliv div{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:14.5px}
+    .deliv div::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;flex:none;border-radius:7px;background:rgba(30,138,90,.1);color:var(--ok);font-weight:700;font-size:13px}
+
+    /* crecimiento */
+    .grow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .grow div{padding:18px;border-radius:var(--radius);background:var(--soft);border:1px solid var(--line)}
+    .grow b{display:block;font:600 15px "Space Grotesk";margin-bottom:4px}
+    .grow span{font-size:14px;color:var(--muted)}
+
+    /* faq */
+    .faq{display:grid;gap:10px;max-width:880px}
+    details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 20px;transition:.15s}
+    details[open]{border-color:rgba(20,169,184,.5);box-shadow:var(--shadow)}
+    summary{cursor:pointer;list-style:none;padding:16px 0;font:600 16px "Space Grotesk";display:flex;justify-content:space-between;gap:16px}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";color:var(--teal-ink);font-size:20px;line-height:1}
+    details[open] summary::after{content:"–"}
+    details p{margin:0 0 16px;color:var(--muted)}
+
+    .contact{background:var(--text);color:#fff;border-radius:24px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+    .contact h2{font-size:28px}
+    .contact p{color:#B9CCDD;margin:8px 0 0;max-width:600px}
+    .contact .btn{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+    .contact .btn.primary{background:var(--teal);border-color:var(--teal)}
+    .contact .btn.primary:hover{background:#0F95A3}
+    footer{padding:36px 0 60px;color:var(--muted);font-size:13px;text-align:center}
+    footer img{height:30px;display:block;margin:0 auto 12px;opacity:.9}
+    footer a{color:var(--teal-ink)}
+
+    @media (max-width:980px){
+      .pains,.phases,.grow{grid-template-columns:repeat(2,1fr)}
+      .gap{grid-template-columns:1fr}
+    }
+    @media (max-width:860px){ .hero-grid{grid-template-columns:1fr} }
+    @media (max-width:760px){
+      nav ul li:not(.keep){display:none}
+      header.hero{padding-top:32px}
+      .pains,.phases,.grow{grid-template-columns:1fr}
+      .contact{padding:28px}
+    }
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="../" aria-label="mangrovex, inicio"><img src="../assets/mangrovex-compact.svg" alt="mangrovex"></a>
+      <ul>
+        <li><a href="../#desarrollos">Desarrollos</a></li>
+        <li class="keep"><a class="on" href="./">Consultoría Odoo</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero wrap" id="top">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker"><i></i> Consultoría independiente · Odoo Community y Enterprise</span>
+        <h1>Primero el negocio,<br>después los <em>módulos</em>.</h1>
+        <p class="lead">Elegir un ERP es una decisión importante, pero instalar el software es solo el comienzo. Te ayudo a entender cómo Odoo debe encajar con tus procesos, tu gente, tus datos y tus reportes, y a convertirlo en una hoja de ruta práctica antes de comprometer tiempo y presupuesto en la implementación.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contacto">Conversemos tu proyecto</a>
+          <a class="btn" href="#servicios">Qué incluye</a>
+        </div>
+      </div>
+      <aside class="qcard" aria-label="La pregunta correcta">
+        <div class="q bad"><span class="mk">✕</span><div><b>La pregunta habitual</b>¿Qué módulos de Odoo debemos instalar?</div></div>
+        <div class="q good"><span class="mk">✓</span><div><b>La pregunta correcta</b>¿Qué debe ayudarnos a lograr nuestro ERP?</div></div>
+        <div class="sig">
+          <img src="../assets/mangrovex-icon.svg" alt="">
+          <div><strong>Manuel Vega Ulloa</strong>Consultor técnico-funcional Odoo · desarrollador Python y Java · Guayaquil, Ecuador</div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <section class="wrap" id="por-que">
+    <div class="sec-head">
+      <h2><small>// por qué consultoría</small>Activar módulos no crea un ERP</h2>
+      <p>Ventas, CRM, Compras, Inventario, Contabilidad, Manufactura, Proyectos o RR. HH.: cada empresa necesita una combinación distinta. Lo que hace funcionar al ERP es cómo se conectan los procesos, y eso se diseña antes de configurar.</p>
+    </div>
+    <div class="pains">
+      <div class="pain"><div class="e">💬</div><h4>Aprobaciones dispersas</h4><p>Se autorizan compras o descuentos por correo o WhatsApp, sin trazabilidad.</p></div>
+      <div class="pain"><div class="e">📊</div><h4>Datos en Excel</h4><p>Productos, precios y stock viven en hojas que nadie sabe cuál es la última versión.</p></div>
+      <div class="pain"><div class="e">👥</div><h4>Clientes duplicados</h4><p>La misma información del cliente existe en varios sistemas y no coincide.</p></div>
+      <div class="pain"><div class="e">🗂️</div><h4>Reportes armados a mano</h4><p>Gerencia espera días por un informe que se consolida juntando archivos de cada área.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="servicios">
+    <div class="sec-head">
+      <h2><small>// servicios</small>Qué incluye la consultoría</h2>
+      <p>Puedes contratar el recorrido completo o solo los frentes que necesitas. Cada uno termina en un entregable concreto que tu equipo o tu implementador puede usar.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="card-top"><div class="ico">🔍</div><span class="num">01</span></div>
+        <h3>Análisis de procesos</h3>
+        <p>Levanto cómo trabaja hoy cada área para encontrar trabajo manual innecesario, doble digitación, vacíos y puntos de descoordinación.</p>
+        <ul><li>Ventas: leads, cotizaciones y aprobación de pedidos</li><li>Compras: necesidades y gestión de proveedores</li><li>Inventario: recepción, despacho y bodegas</li><li>Finanzas: facturación y seguimiento de cobros</li><li>Producción, personal y reportes gerenciales</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">📋</div><span class="num">02</span></div>
+        <h3>Análisis de requerimientos</h3>
+        <p>Separo lo que el negocio necesita hoy de lo que necesitará al crecer, para no complicar el ERP antes de tiempo.</p>
+        <ul><li>Manufactura: planificación, listas de materiales, calidad</li><li>Comercio: compras, ventas, bodegas y visibilidad de stock</li><li>Servicios: CRM, proyectos, partes de horas y facturación</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🧩</div><span class="num">03</span></div>
+        <h3>Planificación de módulos</h3>
+        <p>El objetivo no es usar todas las aplicaciones de Odoo, sino las que tu operación necesita y cómo deben interactuar entre sí.</p>
+        <ul><li>CRM, Ventas, Compras, Inventario, Contabilidad</li><li>Manufactura, Proyectos, Helpdesk, Mantenimiento</li><li>Empleados, Nómina, Punto de Venta, Activos</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🔀</div><span class="num">04</span></div>
+        <h3>Diseño de flujos</h3>
+        <p>Defino etapas, responsables, aprobaciones, automatizaciones y traspasos entre áreas, para que la configuración parta de una estructura clara.</p>
+        <ul><li>Flujo comercial de punta a punta</li><li>Flujo de abastecimiento con aprobaciones</li><li>Visibilidad para gerencia en cada etapa</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">⚖️</div><span class="num">05</span></div>
+        <h3>Análisis de brechas</h3>
+        <p>Comparo el proceso actual con el requerido y propongo el flujo en Odoo, distinguiendo qué es estándar, qué es configuración y qué requiere desarrollo.</p>
+        <ul><li>Proceso actual → proceso requerido → flujo Odoo</li><li>Sin replicar vicios del sistema anterior</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🛠️</div><span class="num">06</span></div>
+        <h3>Planificación de personalización</h3>
+        <p>Antes de escribir código, verifico si el estándar o la configuración resuelven el requerimiento. Si de verdad hace falta desarrollo, queda especificado.</p>
+        <ul><li>Campos, reglas de negocio y aprobaciones</li><li>Reportes, tableros y formularios</li><li>Procesos automáticos y casos especiales</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🔌</div><span class="num">07</span></div>
+        <h3>Planificación de integraciones</h3>
+        <p>Conecto Odoo con otros sistemas solo cuando hay un propósito de negocio claro, con un flujo de datos confiable.</p>
+        <ul><li>E-commerce, pasarelas de pago, courier y envíos</li><li>CRM externos, mensajería, contabilidad y apps propias</li><li>Mapeo, API, autenticación, frecuencia, errores, duplicados y pruebas</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🗄️</div><span class="num">08</span></div>
+        <h3>Datos y migración</h3>
+        <p>Si vienes de Excel, de un sistema contable o de otro ERP, la calidad del dato decide el arranque. Defino qué migrar, qué limpiar y qué archivar.</p>
+        <ul><li>Clientes duplicados y proveedores inactivos</li><li>Códigos de producto inconsistentes</li><li>Stock desactualizado e información incompleta</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">📈</div><span class="num">09</span></div>
+        <h3>Reportes y tableros</h3>
+        <p>Gerencia no necesita todos los reportes, necesita los que respaldan sus decisiones. Los identifico y los conecto con los datos del ERP.</p>
+        <ul><li>Ventas, cotizaciones pendientes y actividad de clientes</li><li>Cuentas por cobrar y compromisos de compra</li><li>Inventario, movimientos, producción y proyectos</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🔐</div><span class="num">10</span></div>
+        <h3>Roles y accesos</h3>
+        <p>Defino quién crea, edita, aprueba y consulta cada información. Roles claros dan responsabilidad y evitan confusión tras el arranque.</p>
+        <ul><li>Aprobación de transacciones</li><li>Acceso a información financiera e inventario</li><li>Gestión de clientes y reportes gerenciales</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🚀</div><span class="num">11</span></div>
+        <h3>Preparación para implementar</h3>
+        <p>La consultoría no reemplaza la implementación: la prepara. El equipo implementador recibe un alcance definido y prioridades claras.</p>
+        <ul><li>Alcance, módulos y estructura de flujos</li><li>Integraciones, datos y personalizaciones</li><li>Capacitación y prioridades de implementación</li></ul></article>
+
+      <article class="card"><div class="card-top"><div class="ico">🌱</div><span class="num">12</span></div>
+        <h3>Adopción del equipo</h3>
+        <p>Si el personal sigue llevando Excel paralelo, el ERP pierde su valor. Planifico responsabilidades por rol y necesidades de capacitación desde el inicio.</p>
+        <ul><li>Quién actualiza qué en el sistema</li><li>Claridad de flujo para cada usuario</li><li>Plan de capacitación por área</li></ul></article>
+    </div>
+  </section>
+
+  <section class="wrap" id="flujos">
+    <div class="sec-head">
+      <h2><small>// flujos conectados</small>Un ERP vale cuando las áreas trabajan sobre el mismo flujo</h2>
+      <p>Dos ejemplos de referencia. El flujo exacto depende de tu negocio, y para cada etapa definimos quién la ejecuta, qué información requiere y quién la aprueba.</p>
+    </div>
+    <div class="flows">
+      <div class="flow"><h4>Flujo de ventas</h4>
+        <div class="steps"><span class="step">Lead</span><span class="arrow">→</span><span class="step">Oportunidad</span><span class="arrow">→</span><span class="step">Cotización</span><span class="arrow">→</span><span class="step">Orden de venta</span><span class="arrow">→</span><span class="step">Entrega</span><span class="arrow">→</span><span class="step">Factura</span><span class="arrow">→</span><span class="step">Cobro</span></div></div>
+      <div class="flow"><h4>Flujo de compras</h4>
+        <div class="steps"><span class="step">Requerimiento</span><span class="arrow">→</span><span class="step">Aprobación</span><span class="arrow">→</span><span class="step">Cotización proveedor</span><span class="arrow">→</span><span class="step">Orden de compra</span><span class="arrow">→</span><span class="step">Recepción</span><span class="arrow">→</span><span class="step">Factura proveedor</span></div></div>
+    </div>
+    <div class="plan-areas">
+      <span class="tag">Etapas del proceso</span><span class="tag">Responsables</span><span class="tag">Aprobaciones</span><span class="tag">Permisos</span><span class="tag">Acciones automáticas</span><span class="tag">Información requerida</span><span class="tag">Traspasos entre áreas</span><span class="tag">Visibilidad gerencial</span>
+    </div>
+  </section>
+
+  <section class="wrap" id="brechas">
+    <div class="sec-head">
+      <h2><small>// estándar · configuración · desarrollo</small>No todo requiere personalización</h2>
+      <p>Muchas empresas sienten que su proceso es único y que necesitarán desarrollar todo a medida. Parte del trabajo es detectar la personalización innecesaria.</p>
+    </div>
+    <div class="gap">
+      <div class="gcol std"><span class="lvl">Nivel 1</span><h4>Odoo estándar</h4><p>Si el flujo nativo resuelve el requerimiento, es la opción más barata de implementar y de mantener en cada actualización de versión.</p></div>
+      <div class="gcol cfg"><span class="lvl">Nivel 2</span><h4>Configuración</h4><p>Reglas, secuencias, aprobaciones, automatizaciones y vistas que se ajustan sin código y siguen dentro del estándar.</p></div>
+      <div class="gcol dev"><span class="lvl">Nivel 3</span><h4>Desarrollo a medida</h4><p>Solo cuando existe una necesidad real del negocio. Se documenta como especificación antes de programar, para que el resultado sea mantenible.</p></div>
+    </div>
+    <p class="note"><b>La meta no es copiar cada proceso antiguo dentro del ERP nuevo</b>, sino llegar a un proceso más práctico y fácil de gestionar.</p>
+  </section>
+
+  <section class="wrap" id="metodo">
+    <div class="sec-head">
+      <h2><small>// cómo trabajo</small>De la conversación a la hoja de ruta</h2>
+    </div>
+    <div class="phases">
+      <div class="phase"><h4>Descubrimiento</h4><p>Entrevistas por área y revisión de cómo se hace hoy cada proceso, con sus documentos y sistemas.</p></div>
+      <div class="phase"><h4>Análisis</h4><p>Requerimientos actuales y futuros, brechas, calidad de datos e integraciones necesarias.</p></div>
+      <div class="phase"><h4>Diseño</h4><p>Módulos, flujos, roles, reportes y personalizaciones propuestas sobre Odoo.</p></div>
+      <div class="phase"><h4>Hoja de ruta</h4><p>Alcance, prioridades y fases de implementación listas para ejecutar o para cotizar con un implementador.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="entregables">
+    <div class="sec-head">
+      <h2><small>// entregables</small>Lo que recibe el equipo de implementación</h2>
+    </div>
+    <div class="deliv">
+      <div>Requerimientos del negocio</div><div>Mapa de procesos actuales</div><div>Alcance del ERP</div><div>Módulos requeridos</div>
+      <div>Estructura de flujos</div><div>Requerimientos de integración</div><div>Plan de datos y migración</div><div>Especificación de personalizaciones</div>
+      <div>Matriz de roles y accesos</div><div>Reportes y tableros clave</div><div>Necesidades de capacitación</div><div>Prioridades de implementación</div>
+    </div>
+  </section>
+
+  <section class="wrap" id="crecimiento">
+    <div class="sec-head">
+      <h2><small>// crecimiento</small>Pensado para lo que viene, no solo para hoy</h2>
+      <p>Lo que funcionaba con hojas de cálculo y mensajes se vuelve difícil de controlar cuando sube el volumen. Una hoja de ruta bien planteada soporta esa complejidad.</p>
+    </div>
+    <div class="grow">
+      <div><b>Más clientes</b><span>Más actividad comercial que gestionar en el CRM.</span></div>
+      <div><b>Más productos</b><span>Mayor necesidad de visibilidad de inventario.</span></div>
+      <div><b>Más personas</b><span>Accesos por rol y responsabilidades claras.</span></div>
+      <div><b>Más bodegas y sucursales</b><span>Gestión de stock estructurada por ubicación.</span></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="faq">
+    <div class="sec-head"><h2><small>// faq</small>Preguntas frecuentes</h2></div>
+    <div class="faq">
+      <details><summary>¿Qué es exactamente la consultoría Odoo ERP?</summary><p>Es el trabajo previo a la implementación: analizar procesos, identificar requerimientos, seleccionar módulos, diseñar flujos y dejar el proyecto listo para configurarse con un alcance claro.</p></details>
+      <details><summary>¿Por qué no empezar directamente con la implementación?</summary><p>Porque configurar sin entender el proceso suele terminar en módulos subutilizados, personalizaciones innecesarias y usuarios que vuelven a Excel. Alinear módulos, flujos, permisos, integraciones y reportes con la operación real reduce retrabajo y costo.</p></details>
+      <details><summary>¿Cómo ayuda a elegir los módulos?</summary><p>Partimos del proceso, no del catálogo. Así se identifican los módulos relevantes (Ventas, Inventario, Compras, Contabilidad, Manufactura, RR. HH., Proyectos…) y se evita configurar funcionalidad que nadie va a usar.</p></details>
+      <details><summary>¿Incluye integraciones por API?</summary><p>Sí. Se definen los requerimientos de API, el mapeo de datos, la autenticación, la frecuencia de sincronización, el manejo de errores, la validación y las pruebas. Como desarrollador también puedo construirlas.</p></details>
+      <details><summary>¿Puede cubrir la migración desde otro sistema?</summary><p>Sí: limpieza de datos, mapeo de campos, transformación, validación, pruebas y preparación de la información histórica para cargarla en Odoo.</p></details>
+      <details><summary>¿Implementas tú también o solo haces la consultoría?</summary><p>La consultoría se puede contratar por separado y su resultado sirve para cualquier implementador. Si lo prefieres, también puedo acompañar la implementación y el desarrollo técnico.</p></details>
+      <details><summary>¿Sirve para una empresa que recién está creciendo?</summary><p>Sí. Una hoja de ruta estructurada permite planificar procesos, usuarios, módulos e integraciones por fases, a medida que la operación se vuelve más compleja.</p></details>
+    </div>
+  </section>
+
+  <section class="wrap" id="contacto">
+    <div class="contact">
+      <div>
+        <h2>Conversemos sobre tu proyecto Odoo</h2>
+        <p>Cuéntame cómo opera hoy tu empresa y qué esperas del ERP. Te propongo un alcance de consultoría a la medida de lo que realmente necesitas.</p>
+      </div>
+      <div class="cta" style="margin:0">
+        <a class="btn primary" href="https://www.linkedin.com/in/manuel-vega-9442898/" target="_blank" rel="noopener">Escríbeme por LinkedIn ↗</a>
+        <a class="btn" href="https://twitter.com/eudoro69" target="_blank" rel="noopener">X · @eudoro69 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="../assets/mangrovex-compact.svg" alt="">
+    Manuel Vega Ulloa · mangrovex · Guayaquil, Ecuador<br>
+    <span style="opacity:.7">Servicio de consultoría independiente. <a href="../">Ver mis desarrollos</a>.</span>
+  </footer>
+</body>
+</html>
