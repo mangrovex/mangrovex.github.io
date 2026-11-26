@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T00:02:29+00:00",
+  "generated_at": "2026-11-26T08:29:00+00:00",
   "source": "api-privada",
   "projects": [
     {
@@ -36,7 +36,7 @@
           "url": "https://mangrovex.github.io/musubi/"
         }
       ],
-      "pushed_at": "2026-11-24T18:43:27Z",
+      "pushed_at": "2026-11-26T02:40:07Z",
       "stars": 0,
       "auto": false
     },
@@ -74,7 +74,7 @@
           "url": "https://mangrovex.github.io/chaskidoo/"
         }
       ],
-      "pushed_at": "2026-11-24T14:18:01Z",
+      "pushed_at": "2026-11-26T01:32:10Z",
       "stars": 0,
       "auto": false
     },
@@ -303,7 +303,7 @@
       "name": "Laboratorio Flutter",
       "code": "flutter_lab · smart_home_animation · badges_app",
       "icon": "📱",
-      "vis": "private",
+      "vis": "public",
       "st": "arch",
       "cat": [
         "mobile"
@@ -315,13 +315,23 @@
         "Flutter",
         "Dart"
       ],
-      "links": [],
+      "links": [
+        {
+          "label": "Repositorio",
+          "url": "https://github.com/mangrovex/flutter_lab"
+        }
+      ],
       "pushed_at": "2024-03-18T17:28:08Z",
       "stars": 0,
       "auto": false
     }
   ],
   "archive": [
+    {
+      "name": "crm-lead-routing",
+      "label": "Python",
+      "pushed_at": "2026-11-26T05:44:31Z"
+    },
     {
       "name": "account_facturaec_invoice",
       "label": "proyecto",
@@ -439,7 +449,6 @@
     "pos_cr",
     "rooster",
     "base_clinic",
-    "tizenhet",
     "contigo_app",
     "eShop",
     "fred_ux",
@@ -453,7 +462,7 @@
   ],
   "counts": {
     "active": 7,
-    "public": 28,
-    "private": 34
+    "public": 30,
+    "private": 32
   }
 }
