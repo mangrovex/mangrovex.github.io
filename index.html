@@ -97,6 +97,7 @@
     .badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
     .badge{font:500 11px "JetBrains Mono";padding:4px 8px;border-radius:7px;border:1px solid var(--line);color:var(--muted);white-space:nowrap;background:#fff}
     .badge.pub{color:var(--ok);border-color:rgba(30,138,90,.3);background:rgba(30,138,90,.06)}
+    .badge.new{color:#fff;background:var(--teal);border-color:var(--teal)}
     .badge.priv{color:#9A5412;border-color:rgba(154,84,18,.28);background:rgba(154,84,18,.06)}
     .st{display:inline-flex;align-items:center;gap:6px}
     .st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
@@ -265,7 +266,7 @@ function card(p){
   const meta = [p.pushed_at ? `⟳ ${ago(p.pushed_at)}` : "", p.stars ? `★ ${p.stars}` : ""].filter(Boolean).join(" · ");
   return `<article class="card${p.featured?" featured":""}">
     <div class="card-top"><div class="ico">${esc(p.icon)}</div>
-      <div class="badges">${vis}<span class="badge st ${p.st}">${ST[p.st]||p.st}</span></div></div>
+      <div class="badges">${p.new?'<span class="badge new">Nuevo</span>':''}${vis}<span class="badge st ${p.st}">${ST[p.st]||p.st}</span></div></div>
     <h3>${esc(p.name)}</h3><div class="code">${esc(p.code)}</div>
     <p>${esc(p.desc)}</p>${bullets}
     <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
@@ -302,7 +303,7 @@ async function load(){
 }
 
 load().then(data => {
-  PROJECTS = [...data.projects].sort((a,b)=> (b.featured|0)-(a.featured|0) || order[a.st]-order[b.st]
+  PROJECTS = [...data.projects].sort((a,b)=> (b.featured|0)-(a.featured|0) || (b.new|0)-(a.new|0) || order[a.st]-order[b.st]
     || String(b.pushed_at||"").localeCompare(String(a.pushed_at||"")));
 
   document.querySelectorAll(".chip").forEach(c=>{

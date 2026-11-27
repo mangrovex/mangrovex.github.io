@@ -19,6 +19,8 @@ ROOT = Path(__file__).resolve().parent.parent
 USER = os.environ.get("GH_USER", "mangrovex")
 TOKEN = os.environ.get("GH_PAT", "").strip()
 TOPIC = "portafolio"
+HIDE_TOPIC = "no-portafolio"
+CATS = {"odoo", "integ", "fin", "devops", "mobile"}
 
 
 def api(url):
@@ -53,7 +55,18 @@ def main():
         print(f"Aviso: no se pudo leer la API de GitHub ({e}); se usa solo projects.yml", file=sys.stderr)
         gh, source = {}, "yml"
 
-    exclude = set(cfg.get("exclude", []))
+    # Repos ocultos: lista `exclude` del YAML o topic "no-portafolio" en GitHub.
+    exclude = set(cfg.get("exclude", [])) | {n for n, r in gh.items() if HIDE_TOPIC in (r.get("topics") or [])}
+    now = dt.datetime.now(dt.timezone.utc)
+    auto_since = str(cfg.get("auto_since", "2100-01-01"))
+    new_days = int(cfg.get("new_days", 60))
+
+    def created(r):
+        return (r.get("created_at") or "")[:10]
+
+    def is_recent(r):
+        c = r.get("created_at")
+        return bool(c) and (now - dt.datetime.fromisoformat(c.replace("Z", "+00:00"))).days < new_days
     used = set()
     projects = []
 
@@ -90,6 +103,7 @@ def main():
             "pushed_at": pushed,
             "stars": sum(d.get("stargazers_count", 0) for d in data),
             "auto": auto,
+            "new": bool(card.get("new")),
         }
 
     for card in cfg.get("cards", []):
@@ -102,8 +116,24 @@ def main():
         projects.append(build({
             "name": name, "repos": [name], "icon": "✨",
             "status": "arch" if r.get("archived") else "wip",
-            "categories": [t for t in r.get("topics", []) if t in {"odoo", "integ", "fin", "devops", "mobile"}],
+            "categories": [t for t in r.get("topics", []) if t in CATS],
         }, auto=True))
+
+    # Repos nuevos: todo repo propio (no fork) creado desde `auto_since` aparece solo
+    # como tarjeta "Nuevo" durante `new_days` días, público o privado.
+    old_private = []
+    for name, r in sorted(gh.items(), key=lambda kv: kv[1].get("created_at") or "", reverse=True):
+        if name in used or name in exclude or r.get("fork") or created(r) < auto_since:
+            continue
+        if is_recent(r):
+            projects.append(build({
+                "name": name, "repos": [name], "icon": "🆕", "new": True,
+                "status": "arch" if r.get("archived") else "wip",
+                "categories": [t for t in r.get("topics", []) if t in CATS],
+                "description": r.get("description") or "Nuevo repositorio, recién creado.",
+            }, auto=True))
+        elif r["private"]:
+            old_private.append(name)  # pasado el plazo: a "Otros repositorios privados"
 
     # Archivo: repos públicos no usados en tarjetas.
     labels = cfg.get("archive_labels", {})
@@ -121,7 +151,8 @@ def main():
     else:
         archive = [{"name": n, "label": l, "pushed_at": None} for n, l in labels.items() if n not in exclude]
 
-    private_other = [n for n in cfg.get("private_other", []) if n not in used]
+    private_other = [n for n in cfg.get("private_other", []) if n not in used and n not in exclude]
+    private_other += [n for n in old_private if n not in private_other]
     if source == "api-privada":  # solo los que aún existen
         private_other = [n for n in private_other if n in gh]
     private_total = sum(1 for r in gh.values() if r["private"]) if source == "api-privada" \

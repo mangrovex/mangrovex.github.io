@@ -12,6 +12,14 @@
 #   - Los repos privados SOLO aparecen si están en este archivo, o si tienen el
 #     topic `portafolio` en GitHub (entonces se crea una tarjeta automática).
 #   - Los repos públicos que no estén en una tarjeta van a "Archivo y formación".
+#   - Repos NUEVOS: cualquier repo propio (no fork) creado desde `auto_since` aparece
+#     automáticamente como tarjeta "Nuevo" con su descripción de GitHub durante
+#     `new_days` días (los privados sin enlace). Después, los públicos pasan al archivo
+#     y los privados a "Otros repositorios privados", salvo que les hagas una tarjeta aquí.
+#   - Para ocultar cualquier repo: agrégalo a `exclude` o ponle el topic `no-portafolio`.
+
+auto_since: "2026-11-26"
+new_days: 60
 
 cards:
   - name: Musubi
@@ -140,7 +148,7 @@ cards:
 private_other: [flowtax, easydocs, pos_cr, rooster, base_clinic, tizenhet, contigo_app, eShop,
                 fred_ux, runakuna, b2bridge, sammy, school, openedunav, OdooHA, Workshop_ACE]
 
-# Repos públicos que nunca se muestran.
+# Repos que nunca se muestran (también sirve el topic `no-portafolio`).
 exclude: [mangrovex, mangrovex.github.io, manex_odoo_repository]
 
 # Etiquetas para el archivo (si no se indica, se usa "fork" o el lenguaje del repo).

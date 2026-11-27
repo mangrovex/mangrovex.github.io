@@ -2,7 +2,7 @@ name: Sincronizar proyectos
 
 on:
   schedule:
-    - cron: "17 */6 * * *"   # cada 6 horas
+    - cron: "*/15 * * * *"   # cada 15 minutos: detecta repos nuevos
   workflow_dispatch:          # botón "Run workflow" en la pestaña Actions
   push:
     branches: [main]
