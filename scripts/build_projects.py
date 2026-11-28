@@ -83,10 +83,11 @@ def main():
         desc = card.get("description") or next((d["description"] for d in data if d.get("description")), "") or ""
         links = []
         if not private:
-            links.append({"label": "Repositorio", "url": f"https://github.com/{USER}/{names[0]}"})
-            hp = next((d.get("homepage") for d in data if d.get("homepage")), None)
-            if hp and not any(l["url"].rstrip("/") == hp.rstrip("/") for l in card.get("links", [])):
-                links.append({"label": "Sitio", "url": hp})
+            if not card.get("hide_repository"):
+                links.append({"label": "Repositorio", "url": f"https://github.com/{USER}/{names[0]}"})
+                hp = next((d.get("homepage") for d in data if d.get("homepage")), None)
+                if hp and not any(l["url"].rstrip("/") == hp.rstrip("/") for l in card.get("links", [])):
+                    links.append({"label": "Sitio", "url": hp})
             links += card.get("links", [])
         return {
             "name": card["name"],

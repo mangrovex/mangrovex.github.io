@@ -22,6 +22,24 @@ auto_since: "2026-11-26"
 new_days: 60
 
 cards:
+  - name: Cognira para Odoo
+    repos: [mangrovex.github.io]
+    code: iniciativa en desarrollo
+    icon: "◌"
+    status: wip
+    categories: [odoo]
+    featured: true
+    new: true
+    hide_repository: true
+    description: Iniciativa para gestionar la adopción de IA en Odoo como un portafolio de inversión y transformación, con evidencia, responsables y decisiones de escala.
+    bullets:
+      - Priorización de casos por impacto, factibilidad, datos, riesgo y capacidad
+      - Criterios para avanzar, ajustar, detener o escalar cada iniciativa
+      - Agentes integrados con permisos, auditoría y supervisión humana
+    tags: [Odoo 19+, IA, Agentes, Gobernanza, Portafolio]
+    links:
+      - {label: Conocer Cognira, url: "https://mangrovex.github.io/cognira/"}
+
   - name: Musubi
     repos: [musubi]
     icon: "🧶"

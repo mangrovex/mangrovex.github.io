@@ -1,7 +1,41 @@
 {
-  "generated_at": "2026-11-27T14:10:32+00:00",
-  "source": "api-privada",
+  "generated_at": "2026-11-28T03:34:07+00:00",
+  "source": "api-publica",
   "projects": [
+    {
+      "name": "Cognira para Odoo",
+      "code": "iniciativa en desarrollo",
+      "icon": "◌",
+      "vis": "public",
+      "st": "wip",
+      "cat": [
+        "odoo"
+      ],
+      "featured": true,
+      "desc": "Iniciativa para gestionar la adopción de IA en Odoo como un portafolio de inversión y transformación, con evidencia, responsables y decisiones de escala.",
+      "bullets": [
+        "Priorización de casos por impacto, factibilidad, datos, riesgo y capacidad",
+        "Criterios para avanzar, ajustar, detener o escalar cada iniciativa",
+        "Agentes integrados con permisos, auditoría y supervisión humana"
+      ],
+      "tags": [
+        "Odoo 19+",
+        "IA",
+        "Agentes",
+        "Gobernanza",
+        "Portafolio"
+      ],
+      "links": [
+        {
+          "label": "Conocer Cognira",
+          "url": "https://mangrovex.github.io/cognira/"
+        }
+      ],
+      "pushed_at": "2026-11-27T14:48:29Z",
+      "stars": 0,
+      "auto": false,
+      "new": true
+    },
     {
       "name": "Musubi",
       "code": "mangrovex/musubi",
@@ -214,7 +248,7 @@
         "Python"
       ],
       "links": [],
-      "pushed_at": "2026-04-01T19:25:26Z",
+      "pushed_at": null,
       "stars": 0,
       "auto": false,
       "new": false
@@ -236,7 +270,7 @@
         "TLS"
       ],
       "links": [],
-      "pushed_at": "2026-04-01T20:32:12Z",
+      "pushed_at": null,
       "stars": 0,
       "auto": false,
       "new": false
@@ -259,7 +293,7 @@
         "Python"
       ],
       "links": [],
-      "pushed_at": "2026-03-23T22:45:40Z",
+      "pushed_at": null,
       "stars": 0,
       "auto": false,
       "new": false
@@ -283,7 +317,7 @@
         "Odoo 17"
       ],
       "links": [],
-      "pushed_at": "2025-07-01T16:26:37Z",
+      "pushed_at": null,
       "stars": 0,
       "auto": false,
       "new": false
@@ -305,7 +339,7 @@
         "Caja"
       ],
       "links": [],
-      "pushed_at": "2023-09-11T20:26:58Z",
+      "pushed_at": null,
       "stars": 0,
       "auto": false,
       "new": false
@@ -332,67 +366,10 @@
           "url": "https://github.com/mangrovex/flutter_lab"
         }
       ],
-      "pushed_at": "2024-03-18T17:28:08Z",
+      "pushed_at": "2024-03-16T13:37:16Z",
       "stars": 0,
       "auto": false,
       "new": false
-    },
-    {
-      "name": "rizoma",
-      "code": "rizoma",
-      "icon": "🆕",
-      "vis": "private",
-      "st": "wip",
-      "cat": [],
-      "featured": false,
-      "desc": "Nuevo repositorio, recién creado.",
-      "bullets": [],
-      "tags": [
-        "Python"
-      ],
-      "links": [],
-      "pushed_at": "2026-11-27T13:34:56Z",
-      "stars": 0,
-      "auto": true,
-      "new": true
-    },
-    {
-      "name": "teudoo",
-      "code": "teudoo",
-      "icon": "🆕",
-      "vis": "private",
-      "st": "wip",
-      "cat": [],
-      "featured": false,
-      "desc": "Nuevo repositorio, recién creado.",
-      "bullets": [],
-      "tags": [
-        "Python"
-      ],
-      "links": [],
-      "pushed_at": "2026-11-26T19:14:30Z",
-      "stars": 0,
-      "auto": true,
-      "new": true
-    },
-    {
-      "name": "odoo-namirial",
-      "code": "odoo-namirial",
-      "icon": "🆕",
-      "vis": "private",
-      "st": "wip",
-      "cat": [],
-      "featured": false,
-      "desc": "Nuevo repositorio, recién creado.",
-      "bullets": [],
-      "tags": [
-        "Python"
-      ],
-      "links": [],
-      "pushed_at": "2026-11-26T12:51:33Z",
-      "stars": 0,
-      "auto": true,
-      "new": true
     },
     {
       "name": "crm-lead-routing",
@@ -537,6 +514,7 @@
     "pos_cr",
     "rooster",
     "base_clinic",
+    "tizenhet",
     "contigo_app",
     "eShop",
     "fred_ux",
@@ -549,8 +527,8 @@
     "Workshop_ACE"
   ],
   "counts": {
-    "active": 11,
-    "public": 30,
-    "private": 35
+    "active": 9,
+    "public": 31,
+    "private": 29
   }
 }
