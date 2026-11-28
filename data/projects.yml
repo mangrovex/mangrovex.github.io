@@ -22,6 +22,24 @@ auto_since: "2026-11-26"
 new_days: 60
 
 cards:
+  - name: Cognira Enterprise
+    repos: [mangrovex.github.io]
+    code: iniciativa en evolución
+    icon: "◌"
+    status: plan
+    categories: [integ, odoo]
+    featured: true
+    new: true
+    hide_repository: true
+    description: Evolución de Cognira hacia una plataforma corporativa para conectar conocimiento, sistemas, agentes y gobierno de IA bajo un solo punto de control.
+    bullets:
+      - Odoo como primer conector; fuentes corporativas ampliadas por etapas
+      - Identidad, sensibilidad, aprobación humana y auditoría como controles transversales
+      - Arquitectura objetivo para modelos locales o externos con gobierno central
+    tags: [IA corporativa, Agentes, RAG, Gobierno, Integración]
+    links:
+      - {label: Conocer Cognira Enterprise, url: "https://mangrovex.github.io/cognira-enterprise/"}
+
   - name: Cognira para Odoo
     repos: [mangrovex.github.io]
     code: iniciativa en desarrollo

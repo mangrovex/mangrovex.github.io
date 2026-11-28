@@ -3,6 +3,41 @@
   "source": "api-privada",
   "projects": [
     {
+      "name": "Cognira Enterprise",
+      "code": "iniciativa en evolución",
+      "icon": "◌",
+      "vis": "public",
+      "st": "plan",
+      "cat": [
+        "integ",
+        "odoo"
+      ],
+      "featured": true,
+      "desc": "Evolución de Cognira hacia una plataforma corporativa para conectar conocimiento, sistemas, agentes y gobierno de IA bajo un solo punto de control.",
+      "bullets": [
+        "Odoo como primer conector; fuentes corporativas ampliadas por etapas",
+        "Identidad, sensibilidad, aprobación humana y auditoría como controles transversales",
+        "Arquitectura objetivo para modelos locales o externos con gobierno central"
+      ],
+      "tags": [
+        "IA corporativa",
+        "Agentes",
+        "RAG",
+        "Gobierno",
+        "Integración"
+      ],
+      "links": [
+        {
+          "label": "Conocer Cognira Enterprise",
+          "url": "https://mangrovex.github.io/cognira-enterprise/"
+        }
+      ],
+      "pushed_at": "2026-11-28T04:17:53Z",
+      "stars": 0,
+      "auto": false,
+      "new": true
+    },
+    {
       "name": "Cognira para Odoo",
       "code": "iniciativa en desarrollo",
       "icon": "◌",
@@ -568,8 +603,8 @@
     "Workshop_ACE"
   ],
   "counts": {
-    "active": 12,
-    "public": 28,
+    "active": 13,
+    "public": 29,
     "private": 35
   }
 }
