@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-28T03:34:32+00:00",
+  "generated_at": "2026-11-28T04:17:52+00:00",
   "source": "api-privada",
   "projects": [
     {
@@ -31,7 +31,7 @@
           "url": "https://mangrovex.github.io/cognira/"
         }
       ],
-      "pushed_at": "2026-11-28T03:34:24Z",
+      "pushed_at": "2026-11-28T03:36:21Z",
       "stars": 0,
       "auto": false,
       "new": true
@@ -535,11 +535,6 @@
       "pushed_at": "2019-02-04T03:08:06Z"
     },
     {
-      "name": "MACROQUIL",
-      "label": "proyecto",
-      "pushed_at": "2018-09-11T01:39:49Z"
-    },
-    {
       "name": "RabbitMQCourse",
       "label": "curso · RabbitMQ",
       "pushed_at": "2018-06-13T11:25:49Z"
@@ -553,16 +548,6 @@
       "name": "ZeroToBlockchain",
       "label": "fork · blockchain",
       "pushed_at": "2018-04-18T03:44:44Z"
-    },
-    {
-      "name": "ibm-performance-monitor",
-      "label": "fork · monitoreo",
-      "pushed_at": "2017-11-17T18:18:10Z"
-    },
-    {
-      "name": "PODUNK",
-      "label": "fork",
-      "pushed_at": "2017-03-07T13:09:10Z"
     }
   ],
   "private_other": [
@@ -584,7 +569,7 @@
   ],
   "counts": {
     "active": 12,
-    "public": 31,
+    "public": 28,
     "private": 35
   }
 }
