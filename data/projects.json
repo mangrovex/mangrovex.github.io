@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-28T03:34:07+00:00",
-  "source": "api-publica",
+  "generated_at": "2026-11-28T03:34:32+00:00",
+  "source": "api-privada",
   "projects": [
     {
       "name": "Cognira para Odoo",
@@ -31,7 +31,7 @@
           "url": "https://mangrovex.github.io/cognira/"
         }
       ],
-      "pushed_at": "2026-11-27T14:48:29Z",
+      "pushed_at": "2026-11-28T03:34:24Z",
       "stars": 0,
       "auto": false,
       "new": true
@@ -248,7 +248,7 @@
         "Python"
       ],
       "links": [],
-      "pushed_at": null,
+      "pushed_at": "2026-04-01T19:25:26Z",
       "stars": 0,
       "auto": false,
       "new": false
@@ -270,7 +270,7 @@
         "TLS"
       ],
       "links": [],
-      "pushed_at": null,
+      "pushed_at": "2026-04-01T20:32:12Z",
       "stars": 0,
       "auto": false,
       "new": false
@@ -293,7 +293,7 @@
         "Python"
       ],
       "links": [],
-      "pushed_at": null,
+      "pushed_at": "2026-03-23T22:45:40Z",
       "stars": 0,
       "auto": false,
       "new": false
@@ -317,7 +317,7 @@
         "Odoo 17"
       ],
       "links": [],
-      "pushed_at": null,
+      "pushed_at": "2025-07-01T16:26:37Z",
       "stars": 0,
       "auto": false,
       "new": false
@@ -339,7 +339,7 @@
         "Caja"
       ],
       "links": [],
-      "pushed_at": null,
+      "pushed_at": "2023-09-11T20:26:58Z",
       "stars": 0,
       "auto": false,
       "new": false
@@ -366,10 +366,67 @@
           "url": "https://github.com/mangrovex/flutter_lab"
         }
       ],
-      "pushed_at": "2024-03-16T13:37:16Z",
+      "pushed_at": "2024-03-18T17:28:08Z",
       "stars": 0,
       "auto": false,
       "new": false
+    },
+    {
+      "name": "rizoma",
+      "code": "rizoma",
+      "icon": "🆕",
+      "vis": "private",
+      "st": "wip",
+      "cat": [],
+      "featured": false,
+      "desc": "Nuevo repositorio, recién creado.",
+      "bullets": [],
+      "tags": [
+        "Python"
+      ],
+      "links": [],
+      "pushed_at": "2026-11-27T13:34:56Z",
+      "stars": 0,
+      "auto": true,
+      "new": true
+    },
+    {
+      "name": "teudoo",
+      "code": "teudoo",
+      "icon": "🆕",
+      "vis": "private",
+      "st": "wip",
+      "cat": [],
+      "featured": false,
+      "desc": "Nuevo repositorio, recién creado.",
+      "bullets": [],
+      "tags": [
+        "Python"
+      ],
+      "links": [],
+      "pushed_at": "2026-11-26T19:14:30Z",
+      "stars": 0,
+      "auto": true,
+      "new": true
+    },
+    {
+      "name": "odoo-namirial",
+      "code": "odoo-namirial",
+      "icon": "🆕",
+      "vis": "private",
+      "st": "wip",
+      "cat": [],
+      "featured": false,
+      "desc": "Nuevo repositorio, recién creado.",
+      "bullets": [],
+      "tags": [
+        "Python"
+      ],
+      "links": [],
+      "pushed_at": "2026-11-26T12:51:33Z",
+      "stars": 0,
+      "auto": true,
+      "new": true
     },
     {
       "name": "crm-lead-routing",
@@ -514,7 +571,6 @@
     "pos_cr",
     "rooster",
     "base_clinic",
-    "tizenhet",
     "contigo_app",
     "eShop",
     "fred_ux",
@@ -527,8 +583,8 @@
     "Workshop_ACE"
   ],
   "counts": {
-    "active": 9,
+    "active": 12,
     "public": 31,
-    "private": 29
+    "private": 35
   }
 }
